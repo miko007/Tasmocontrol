@@ -1,0 +1,20 @@
+aside {
+	position: relative;
+
+	&.main {
+		width: 25vw;
+		min-width: 200px;
+		height: 100%;
+		float: left;
+		overflow-y: auto;
+	}
+
+	.handle {
+		position: absolute;
+		cursor: col-resize;
+		height: 100%;
+		width: 3px;
+		top: 0;
+		right: 0;
+	}
+}

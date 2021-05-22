@@ -1,0 +1,12 @@
+.tab-item {
+	text-decoration: none;
+	color: #444;
+}
+
+.btn {
+	&.btn-primary, &.btn-warning {
+		.icon {
+			color: white;
+		}
+	}
+}

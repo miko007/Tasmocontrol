@@ -1,0 +1,25 @@
+.nothing-here {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+	background: #eee;
+	color: #aaa;
+
+	article {
+		text-align: center;
+
+		span.icon {
+			font-size: 5rem;
+			display: block;
+		}
+
+		p {
+			margin: 0;
+			padding: 0 4rem;
+			font-size: 1.2rem;
+		}
+	}
+
+}

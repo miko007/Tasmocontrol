@@ -1,0 +1,23 @@
+.list-group {
+	background: white;
+
+	.list-group-item {
+		.media-body {
+			position: relative;
+
+			.additional-controls {
+				position: absolute;
+				right: 0;
+				top: 50%;
+				transform: translateY(-50%);
+
+				& > * {
+					&:not(:first-child) {
+						vertical-align: middle;
+						margin-left: 1rem;;
+					}
+				}
+			}
+		}
+	}
+}

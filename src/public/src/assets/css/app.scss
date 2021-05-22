@@ -1,0 +1,35 @@
+@import "variables";
+@import "animations";
+
+@import "lib/photon/sass/photon";
+
+@import "forms";
+@import "lists";
+
+@import "titlebar";
+@import "toolbar";
+@import "sidebar";
+
+@import "nothingHere";
+
+@import "overrides";
+
+main.app {
+	height: 100vh;
+	width: 100vw;
+	padding-top: 78px;
+	position: absolute;
+	left: 0;
+	top: 0;
+
+	.content {
+		overflow-y: auto;
+		width: 75vw;
+		height: 100%;
+		background: #eee;
+	}
+}
+
+.wrapper {
+	padding: 1rem;
+}
