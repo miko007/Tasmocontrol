@@ -14,7 +14,7 @@ const Tasmota = ({config, setConfig}) => {
 				}
 			});
 		}
-	}, [config]);
+	}, [config, setConfig]);
 
 	return (
 		<>

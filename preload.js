@@ -12,8 +12,11 @@ contextBridge.exposeInMainWorld(
             ipcRenderer.send("ConfigService::set", [key, value]);
         },
         discoveryComplete : callback => ipcRenderer.on("DeviceStore::discoveryComplete", () => callback()),
+        deviceRequestAll : () => ipcRenderer.send("DeviceStore::all"),
         deviceRequest : ip => ipcRenderer.send("DeviceStore::single", ip),
         deviceReceive : callback => ipcRenderer.on("DeviceStore::device", (_, device) => callback(device)),
-        commandSend : (ip, command, payload) => ipcRenderer.send("CommandService::send", [ip, command, payload])
+        commandSend : (ip, command, payload) => ipcRenderer.send("CommandService::send", [ip, command, payload]),
+        commandImmediate : async (ip, command) => ipcRenderer.invoke("CommandService::sendImmediate", [ip, command]),
+        windowMinMax : () => ipcRenderer.send("MainWindow::minMax")
     }
 );

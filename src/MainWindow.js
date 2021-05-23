@@ -2,7 +2,7 @@
 
 const path = require("path");
 
-const {BrowserWindow, screen} = require("electron");
+const {BrowserWindow, screen, ipcMain} = require("electron");
 
 class MainWindow {
 	constructor(parent) {
@@ -29,6 +29,8 @@ class MainWindow {
 				preload          : path.join(__dirname, "..", "preload.js")
 			}
 		});
+
+		ipcMain.on("MainWindow::minMax", () => this._instance.isMaximized() ? this._instance.unmaximize() : this._instance.maximize());
 	}
 
 	get instance() {

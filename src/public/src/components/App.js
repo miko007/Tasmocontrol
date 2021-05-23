@@ -20,11 +20,13 @@ const App = () => {
 			setDevices(devices);
 		});
 		window.api.configUpdated(newConfig =>  {
-			console.log(newConfig);
 			setConfig(newConfig)
 		});
+		window.api.deviceRequestAll();
 		window.api.configRequest();
-	}, []);
+
+		console.log(device);
+	}, [device]);
 
 	const handleInput = event => {
 		const newConfig = {...config};
@@ -42,9 +44,9 @@ const App = () => {
 					<Sidebar width={sidebarWidth} resize={setSidebarWidth} devices={devices} />
 					<section className="content" style={{width : `${100 - sidebarWidth}vw`}}>
 						<Switch>
+							<Route path="/device/:ip" render={() => <DeviceDetails devices={devices} setDevices={setDevices} />} />
 							<Route exact path="/" render={() => <DevicesList devices={devices} setDevice={setDevice} config={config} />} />
 							<Route path="/settings" render={() => <Settings config={config} setConfig={handleInput} />} />
-							<Route exact path="/device/:ip" render={() => <DeviceDetails device={device} />} />
 							<Route render={() => <Redirect to="/"/>}/>
 						</Switch>
 					</section>

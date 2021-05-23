@@ -1,6 +1,10 @@
 "use strict";
 
-const electron = require("electron");
+try {
+	const electron = require("electron");
+} catch (error) {
+	const electron = null;
+}
 const Chalk    = require("chalk");
 
 class Std {
@@ -49,6 +53,8 @@ class Std {
 	}
 
 	static IsDev() {
+		if (typeof electron === "undefined")
+			return true;
 		if (typeof electron === "string")
 			Std.Log(`[Std] Electron not found`, Std.LogLevel.FATAL);
 

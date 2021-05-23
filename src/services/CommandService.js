@@ -15,11 +15,21 @@ class CommandService {
 		this.parent.configService.addListener("tasmotaPassword", newValue => this.tasmotaPassword = newValue);
 
 		ipcMain.on("CommandService::send", (_, [ip, command, payload]) => this.send(ip, command, payload));
+		ipcMain.handle("CommandService::sendImmediate", async (event, [ip, command]) => {
+			console.log(this.auth);
+			const auth     = this.useCredentials ? `${this.tasmotaUser}:${this.tasmotaPassword}@` : "";
+			const response = await axios.get(`http://${auth}${ip}/cm?cmnd=${encodeURIComponent(command)}`);
+
+			return response.data;
+		});
+	}
+
+	get auth() {
+		this.useCredentials ? `${this.tasmotaUser}:${this.tasmotaPassword}@` : "";
 	}
 
 	send(ip, command, payload) {
-		const auth = this.useCredentials ? `${this.tasmotaUser}:${this.tasmotaPassword}@` : "";
-		return axios.get(`http://${auth}${ip}/cm?cmnd=${command}%20${payload}`);
+		return axios.get(`http://${this.auth}${ip}/cm?cmnd=${command}%20${payload}`);
 	}
 }
 

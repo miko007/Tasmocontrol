@@ -21,7 +21,7 @@ const DevicesList = ({devices, setDevice, config}) => {
 
 	return (
 		<ul className="list-group">
-			{devices.map(device => (
+			{Object.values(devices).map(device => (
 				<li className="list-group-item" key={device.Status.DeviceName}>
 					<span className="icon icon-mobile pull-left media-object" style={{fontSize : "1.2rem"}}></span>
 					<div className="media-body">

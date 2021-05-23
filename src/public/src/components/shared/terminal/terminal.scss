@@ -1,0 +1,40 @@
+.terminal {
+	background: black;
+	width: 100%;
+	min-height: 300px;
+	padding: 0 1rem;
+	overflow-y: scroll;
+	max-height: 70vh;
+
+	.line {
+		display: block;
+		word-break: break-all;
+
+		&.invisible {
+			color: transparent !important;
+		}
+	}
+
+	&, input {
+		font-family: Menlo, sans-serif;
+		font-size: 0.9rem !important;
+	}
+
+	.input {
+		display: flex;
+
+		.prompt {
+
+		}
+
+		input[type=text] {
+			background: transparent;
+			border: none;
+			flex-grow: 1;
+			display: block;
+			outline: 0;
+			padding: 0;
+			margin: 0;
+		}
+	}
+}

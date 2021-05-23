@@ -12,3 +12,19 @@
 		}
 	}
 }
+
+.terminal-base {
+	font-size: 1.2rem;
+
+	&, * {
+		max-width: 100% !important;
+	}
+
+	div:has(input) {
+		background: red;
+	}
+
+	pre {
+		margin: 0;
+	}
+}

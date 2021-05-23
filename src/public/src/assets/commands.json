@@ -1,0 +1,1062 @@
+[
+    {
+        "value": "Backlog",
+        "label": "D_CMND_BACKLOG"
+    },
+    {
+        "value": "Delay",
+        "label": "D_CMND_DELAY"
+    },
+    {
+        "value": "NoDelay",
+        "label": "D_CMND_NODELAY"
+    },
+    {
+        "value": "Status",
+        "label": "D_CMND_STATUS"
+    },
+    {
+        "value": "State",
+        "label": "D_CMND_STATE"
+    },
+    {
+        "value": "Power",
+        "label": "D_CMND_POWER"
+    },
+    {
+        "value": "FanSpeed",
+        "label": "D_CMND_FANSPEED"
+    },
+    {
+        "value": "PowerOnState",
+        "label": "D_CMND_POWERONSTATE"
+    },
+    {
+        "value": "PulseTime",
+        "label": "D_CMND_PULSETIME"
+    },
+    {
+        "value": "BlinkTime",
+        "label": "D_CMND_BLINKTIME"
+    },
+    {
+        "value": "BlinkCount",
+        "label": "D_CMND_BLINKCOUNT"
+    },
+    {
+        "value": "Sensor",
+        "label": "D_CMND_SENSOR"
+    },
+    {
+        "value": "Driver",
+        "label": "D_CMND_DRIVER"
+    },
+    {
+        "value": "SaveData",
+        "label": "D_CMND_SAVEDATA"
+    },
+    {
+        "value": "SetOption",
+        "label": "D_CMND_SETOPTION"
+    },
+    {
+        "value": "SO",
+        "label": "D_CMND_SO"
+    },
+    {
+        "value": "TempRes",
+        "label": "D_CMND_TEMPERATURE_RESOLUTION"
+    },
+    {
+        "value": "HumRes",
+        "label": "D_CMND_HUMIDITY_RESOLUTION"
+    },
+    {
+        "value": "PressRes",
+        "label": "D_CMND_PRESSURE_RESOLUTION"
+    },
+    {
+        "value": "WattRes",
+        "label": "D_CMND_POWER_RESOLUTION"
+    },
+    {
+        "value": "VoltRes",
+        "label": "D_CMND_VOLTAGE_RESOLUTION"
+    },
+    {
+        "value": "FreqRes",
+        "label": "D_CMND_FREQUENCY_RESOLUTION"
+    },
+    {
+        "value": "AmpRes",
+        "label": "D_CMND_CURRENT_RESOLUTION"
+    },
+    {
+        "value": "EnergyRes",
+        "label": "D_CMND_ENERGY_RESOLUTION"
+    },
+    {
+        "value": "WeightRes",
+        "label": "D_CMND_WEIGHT_RESOLUTION"
+    },
+    {
+        "value": "Module",
+        "label": "D_CMND_MODULE"
+    },
+    {
+        "value": "Modules",
+        "label": "D_CMND_MODULES"
+    },
+    {
+        "value": "ADC",
+        "label": "D_CMND_ADC"
+    },
+    {
+        "value": "ADCs",
+        "label": "D_CMND_ADCS"
+    },
+    {
+        "value": "GPIO",
+        "label": "D_CMND_GPIO"
+    },
+    {
+        "value": "GPIOs",
+        "label": "D_CMND_GPIOS"
+    },
+    {
+        "value": "PWM",
+        "label": "D_CMND_PWM"
+    },
+    {
+        "value": "PWMFrequency",
+        "label": "D_CMND_PWMFREQUENCY"
+    },
+    {
+        "value": "PWMRange",
+        "label": "D_CMND_PWMRANGE"
+    },
+    {
+        "value": "ButtonDebounce",
+        "label": "D_CMND_BUTTONDEBOUNCE"
+    },
+    {
+        "value": "SwitchDebounce",
+        "label": "D_CMND_SWITCHDEBOUNCE"
+    },
+    {
+        "value": "SwitchText",
+        "label": "D_CMND_SWITCHTEXT"
+    },
+    {
+        "value": "Sleep",
+        "label": "D_CMND_SLEEP"
+    },
+    {
+        "value": "Upload",
+        "label": "D_CMND_UPLOAD"
+    },
+    {
+        "value": "Upgrade",
+        "label": "D_CMND_UPGRADE"
+    },
+    {
+        "value": "OtaUrl",
+        "label": "D_CMND_OTAURL"
+    },
+    {
+        "value": "SerialLog",
+        "label": "D_CMND_SERIALLOG"
+    },
+    {
+        "value": "SysLog",
+        "label": "D_CMND_SYSLOG"
+    },
+    {
+        "value": "LogHost",
+        "label": "D_CMND_LOGHOST"
+    },
+    {
+        "value": "LogPort",
+        "label": "D_CMND_LOGPORT"
+    },
+    {
+        "value": "IPAddress",
+        "label": "D_CMND_IPADDRESS"
+    },
+    {
+        "value": "NtpServer",
+        "label": "D_CMND_NTPSERVER"
+    },
+    {
+        "value": "Ap",
+        "label": "D_CMND_AP"
+    },
+    {
+        "value": "SSId",
+        "label": "D_CMND_SSID"
+    },
+    {
+        "value": "Password",
+        "label": "D_CMND_PASSWORD"
+    },
+    {
+        "value": "Hostname",
+        "label": "D_CMND_HOSTNAME"
+    },
+    {
+        "value": "Wifi",
+        "label": "D_CMND_WIFI"
+    },
+    {
+        "value": "Ethernet",
+        "label": "D_CMND_ETHERNET"
+    },
+    {
+        "value": "WifiConfig",
+        "label": "D_CMND_WIFICONFIG"
+    },
+    {
+        "value": "DeviceName",
+        "label": "D_CMND_DEVICENAME"
+    },
+    {
+        "value": "FriendlyName",
+        "label": "D_CMND_FRIENDLYNAME"
+    },
+    {
+        "value": "FN",
+        "label": "D_CMND_FN"
+    },
+    {
+        "value": "SwitchMode",
+        "label": "D_CMND_SWITCHMODE"
+    },
+    {
+        "value": "Interlock",
+        "label": "D_CMND_INTERLOCK"
+    },
+    {
+        "value": "TelePeriod",
+        "label": "D_CMND_TELEPERIOD"
+    },
+    {
+        "value": "Restart",
+        "label": "D_CMND_RESTART"
+    },
+    {
+        "value": "Reset",
+        "label": "D_CMND_RESET"
+    },
+    {
+        "value": "Time",
+        "label": "D_CMND_TIME"
+    },
+    {
+        "value": "Timezone",
+        "label": "D_CMND_TIMEZONE"
+    },
+    {
+        "value": "TimeStd",
+        "label": "D_CMND_TIMESTD"
+    },
+    {
+        "value": "TimeDst",
+        "label": "D_CMND_TIMEDST"
+    },
+    {
+        "value": "Altitude",
+        "label": "D_CMND_ALTITUDE"
+    },
+    {
+        "value": "LedPower",
+        "label": "D_CMND_LEDPOWER"
+    },
+    {
+        "value": "LedState",
+        "label": "D_CMND_LEDSTATE"
+    },
+    {
+        "value": "LedMask",
+        "label": "D_CMND_LEDMASK"
+    },
+    {
+        "value": "LedPwmOff",
+        "label": "D_CMND_LEDPWM_OFF"
+    },
+    {
+        "value": "LedPwmOn",
+        "label": "D_CMND_LEDPWM_ON"
+    },
+    {
+        "value": "LedPwmMode",
+        "label": "D_CMND_LEDPWM_MODE"
+    },
+    {
+        "value": "WifiPower",
+        "label": "D_CMND_WIFIPOWER"
+    },
+    {
+        "value": "SpeedUnit",
+        "label": "D_CMND_SPEEDUNIT"
+    },
+    {
+        "value": "DevGroupName",
+        "label": "D_CMND_DEVGROUP_NAME"
+    },
+    {
+        "value": "DevGroupSend",
+        "label": "D_CMND_DEVGROUP_SEND"
+    },
+    {
+        "value": "DevGroupShare",
+        "label": "D_CMND_DEVGROUP_SHARE"
+    },
+    {
+        "value": "DevGroupStatus",
+        "label": "D_CMND_DEVGROUPSTATUS"
+    },
+    {
+        "value": "DevGroupTie",
+        "label": "D_CMND_DEVGROUP_TIE"
+    },
+    {
+        "value": "SerialBuffer",
+        "label": "D_CMND_SERIALBUFFER"
+    },
+    {
+        "value": "SerialSend",
+        "label": "D_CMND_SERIALSEND"
+    },
+    {
+        "value": "SerialDelimiter",
+        "label": "D_CMND_SERIALDELIMITER"
+    },
+    {
+        "value": "Baudrate",
+        "label": "D_CMND_BAUDRATE"
+    },
+    {
+        "value": "SerialConfig",
+        "label": "D_CMND_SERIALCONFIG"
+    },
+    {
+        "value": "Template",
+        "label": "D_CMND_TEMPLATE"
+    },
+    {
+        "value": "TempOffset",
+        "label": "D_CMND_TEMPOFFSET"
+    },
+    {
+        "value": "HumOffset",
+        "label": "D_CMND_HUMOFFSET"
+    },
+    {
+        "value": "GlobalTemp",
+        "label": "D_CMND_GLOBAL_TEMP"
+    },
+    {
+        "value": "GlobalHum",
+        "label": "D_CMND_GLOBAL_HUM"
+    },
+    {
+        "value": "TouchCal",
+        "label": "D_CMND_TOUCH_CAL"
+    },
+    {
+        "value": "TouchThres",
+        "label": "D_CMND_TOUCH_THRES"
+    },
+    {
+        "value": "TouchNum",
+        "label": "D_CMND_TOUCH_NUM"
+    },
+    {
+        "value": "CpuFrequency",
+        "label": "D_CMND_CPU_FREQUENCY"
+    },
+    {
+        "value": "MqttLog",
+        "label": "D_CMND_MQTTLOG"
+    },
+    {
+        "value": "MqttHost",
+        "label": "D_CMND_MQTTHOST"
+    },
+    {
+        "value": "MqttPort",
+        "label": "D_CMND_MQTTPORT"
+    },
+    {
+        "value": "MqttRetry",
+        "label": "D_CMND_MQTTRETRY"
+    },
+    {
+        "value": "StateText",
+        "label": "D_CMND_STATETEXT"
+    },
+    {
+        "value": "MqttFingerprint",
+        "label": "D_CMND_MQTTFINGERPRINT"
+    },
+    {
+        "value": "MqttClient",
+        "label": "D_CMND_MQTTCLIENT"
+    },
+    {
+        "value": "MqttUser",
+        "label": "D_CMND_MQTTUSER"
+    },
+    {
+        "value": "MqttPassword",
+        "label": "D_CMND_MQTTPASSWORD"
+    },
+    {
+        "value": "MqttKeepAlive",
+        "label": "D_CMND_MQTTKEEPALIVE"
+    },
+    {
+        "value": "MqttTimeout",
+        "label": "D_CMND_MQTTTIMEOUT"
+    },
+    {
+        "value": "TLSKey",
+        "label": "D_CMND_TLSKEY"
+    },
+    {
+        "value": "FullTopic",
+        "label": "D_CMND_FULLTOPIC"
+    },
+    {
+        "value": "Prefix",
+        "label": "D_CMND_PREFIX"
+    },
+    {
+        "value": "GroupTopic",
+        "label": "D_CMND_GROUPTOPIC"
+    },
+    {
+        "value": "Topic",
+        "label": "D_CMND_TOPIC"
+    },
+    {
+        "value": "ButtonTopic",
+        "label": "D_CMND_BUTTONTOPIC"
+    },
+    {
+        "value": "SwitchTopic",
+        "label": "D_CMND_SWITCHTOPIC"
+    },
+    {
+        "value": "ButtonRetain",
+        "label": "D_CMND_BUTTONRETAIN"
+    },
+    {
+        "value": "SwitchRetain",
+        "label": "D_CMND_SWITCHRETAIN"
+    },
+    {
+        "value": "PowerRetain",
+        "label": "D_CMND_POWERRETAIN"
+    },
+    {
+        "value": "SensorRetain",
+        "label": "D_CMND_SENSORRETAIN"
+    },
+    {
+        "value": "InfoRetain",
+        "label": "D_CMND_INFORETAIN"
+    },
+    {
+        "value": "StateRetain",
+        "label": "D_CMND_STATERETAIN"
+    },
+    {
+        "value": "Publish",
+        "label": "D_CMND_PUBLISH"
+    },
+    {
+        "value": "FileUpload",
+        "label": "D_CMND_FILEUPLOAD"
+    },
+    {
+        "value": "FileDownload",
+        "label": "D_CMND_FILEDOWNLOAD"
+    },
+    {
+        "value": "Webserver",
+        "label": "D_CMND_WEBSERVER"
+    },
+    {
+        "value": "WebPassword",
+        "label": "D_CMND_WEBPASSWORD"
+    },
+    {
+        "value": "WebLog",
+        "label": "D_CMND_WEBLOG"
+    },
+    {
+        "value": "WebRefresh",
+        "label": "D_CMND_WEBREFRESH"
+    },
+    {
+        "value": "WebSend",
+        "label": "D_CMND_WEBSEND"
+    },
+    {
+        "value": "WebColor",
+        "label": "D_CMND_WEBCOLOR"
+    },
+    {
+        "value": "WebButton",
+        "label": "D_CMND_WEBBUTTON"
+    },
+    {
+        "value": "WebSensor",
+        "label": "D_CMND_WEBSENSOR"
+    },
+    {
+        "value": "Emulation",
+        "label": "D_CMND_EMULATION"
+    },
+    {
+        "value": "Sendmail",
+        "label": "D_CMND_SENDMAIL"
+    },
+    {
+        "value": "CORS",
+        "label": "D_CMND_CORS"
+    },
+    {
+        "value": "PowerLow",
+        "label": "D_CMND_POWERLOW"
+    },
+    {
+        "value": "PowerHigh",
+        "label": "D_CMND_POWERHIGH"
+    },
+    {
+        "value": "PowerDelta",
+        "label": "D_CMND_POWERDELTA"
+    },
+    {
+        "value": "VoltageLow",
+        "label": "D_CMND_VOLTAGELOW"
+    },
+    {
+        "value": "VoltageHigh",
+        "label": "D_CMND_VOLTAGEHIGH"
+    },
+    {
+        "value": "CurrentLow",
+        "label": "D_CMND_CURRENTLOW"
+    },
+    {
+        "value": "CurrentHigh",
+        "label": "D_CMND_CURRENTHIGH"
+    },
+    {
+        "value": "EnergyReset",
+        "label": "D_CMND_ENERGYRESET"
+    },
+    {
+        "value": "PowerSet",
+        "label": "D_CMND_POWERSET"
+    },
+    {
+        "value": "VoltageSet",
+        "label": "D_CMND_VOLTAGESET"
+    },
+    {
+        "value": "CurrentSet",
+        "label": "D_CMND_CURRENTSET"
+    },
+    {
+        "value": "FrequencySet",
+        "label": "D_CMND_FREQUENCYSET"
+    },
+    {
+        "value": "EnergyConfig",
+        "label": "D_CMND_ENERGYCONFIG"
+    },
+    {
+        "value": "MaxPower",
+        "label": "D_CMND_MAXPOWER"
+    },
+    {
+        "value": "MaxPowerHold",
+        "label": "D_CMND_MAXPOWERHOLD"
+    },
+    {
+        "value": "MaxPowerWindow",
+        "label": "D_CMND_MAXPOWERWINDOW"
+    },
+    {
+        "value": "SafePower",
+        "label": "D_CMND_SAFEPOWER"
+    },
+    {
+        "value": "SafePowerHold",
+        "label": "D_CMND_SAFEPOWERHOLD"
+    },
+    {
+        "value": "SafePowerWindow",
+        "label": "D_CMND_SAFEPOWERWINDOW"
+    },
+    {
+        "value": "MaxEnergy",
+        "label": "D_CMND_MAXENERGY"
+    },
+    {
+        "value": "MaxEnergyStart",
+        "label": "D_CMND_MAXENERGYSTART"
+    },
+    {
+        "value": "Channel",
+        "label": "D_CMND_CHANNEL"
+    },
+    {
+        "value": "Color",
+        "label": "D_CMND_COLOR"
+    },
+    {
+        "value": "CT",
+        "label": "D_CMND_COLORTEMPERATURE"
+    },
+    {
+        "value": "Dimmer",
+        "label": "D_CMND_DIMMER"
+    },
+    {
+        "value": "DimmerRange",
+        "label": "D_CMND_DIMMER_RANGE"
+    },
+    {
+        "value": "DimmerStep",
+        "label": "D_CMND_DIMMER_STEP"
+    },
+    {
+        "value": "HSBColor",
+        "label": "D_CMND_HSBCOLOR"
+    },
+    {
+        "value": "VirtualCT",
+        "label": "D_CMND_VIRTUALCT"
+    },
+    {
+        "value": "CTRange",
+        "label": "D_CMND_CTRANGE"
+    },
+    {
+        "value": "Led",
+        "label": "D_CMND_LED"
+    },
+    {
+        "value": "LedTable",
+        "label": "D_CMND_LEDTABLE"
+    },
+    {
+        "value": "Fade",
+        "label": "D_CMND_FADE"
+    },
+    {
+        "value": "Palette",
+        "label": "D_CMND_PALETTE"
+    },
+    {
+        "value": "Pixels",
+        "label": "D_CMND_PIXELS"
+    },
+    {
+        "value": "RGBWWTable",
+        "label": "D_CMND_RGBWWTABLE"
+    },
+    {
+        "value": "Rotation",
+        "label": "D_CMND_ROTATION"
+    },
+    {
+        "value": "Scheme",
+        "label": "D_CMND_SCHEME"
+    },
+    {
+        "value": "SequenceOffset",
+        "label": "D_CMND_SEQUENCE_OFFSET"
+    },
+    {
+        "value": "Speed",
+        "label": "D_CMND_SPEED"
+    },
+    {
+        "value": "Wakeup",
+        "label": "D_CMND_WAKEUP"
+    },
+    {
+        "value": "WakeUpDuration",
+        "label": "D_CMND_WAKEUPDURATION"
+    },
+    {
+        "value": "White",
+        "label": "D_CMND_WHITE"
+    },
+    {
+        "value": "Width",
+        "label": "D_CMND_WIDTH"
+    },
+    {
+        "value": "IRSend",
+        "label": "D_CMND_IRSEND"
+    },
+    {
+        "value": "IRHVAC",
+        "label": "D_CMND_IRHVAC"
+    },
+    {
+        "value": "RfCode",
+        "label": "D_CMND_RFCODE"
+    },
+    {
+        "value": "RfHigh",
+        "label": "D_CMND_RFHIGH"
+    },
+    {
+        "value": "RfHost",
+        "label": "D_CMND_RFHOST"
+    },
+    {
+        "value": "RfKey",
+        "label": "D_CMND_RFKEY"
+    },
+    {
+        "value": "RfLow",
+        "label": "D_CMND_RFLOW"
+    },
+    {
+        "value": "RfSync",
+        "label": "D_CMND_RFSYNC"
+    },
+    {
+        "value": "RfRaw",
+        "label": "D_CMND_RFRAW"
+    },
+    {
+        "value": "SSerialSend",
+        "label": "D_CMND_SSERIALSEND"
+    },
+    {
+        "value": "SBaudrate",
+        "label": "D_CMND_SBAUDRATE"
+    },
+    {
+        "value": "Timer",
+        "label": "D_CMND_TIMER"
+    },
+    {
+        "value": "Timers",
+        "label": "D_CMND_TIMERS"
+    },
+    {
+        "value": "Latitude",
+        "label": "D_CMND_LATITUDE"
+    },
+    {
+        "value": "Longitude",
+        "label": "D_CMND_LONGITUDE"
+    },
+    {
+        "value": "PermitJoin",
+        "label": "D_CMND_ZIGBEE_PERMITJOIN"
+    },
+    {
+        "value": "Status",
+        "label": "D_CMND_ZIGBEE_STATUS"
+    },
+    {
+        "value": "Reset",
+        "label": "D_CMND_ZIGBEE_RESET"
+    },
+    {
+        "value": "ZNPReceive",
+        "label": "D_CMND_ZIGBEEZNPRECEIVE"
+    },
+    {
+        "value": "EZSPReceive",
+        "label": "D_CMND_ZIGBEE_EZSP_RECEIVE"
+    },
+    {
+        "value": "EZSPReceiveRaw",
+        "label": "D_CMND_ZIGBEE_EZSP_RECEIVE_RAW"
+    },
+    {
+        "value": "Listen",
+        "label": "D_CMND_ZIGBEE_EZSP_LISTEN"
+    },
+    {
+        "value": "ZNPSend",
+        "label": "D_CMND_ZIGBEEZNPSEND"
+    },
+    {
+        "value": "EZSPSend",
+        "label": "D_CMND_ZIGBEE_EZSP_SEND"
+    },
+    {
+        "value": "EZSPSendRaw",
+        "label": "D_CMND_ZIGBEE_EZSP_SEND_RAW"
+    },
+    {
+        "value": "Name",
+        "label": "D_CMND_ZIGBEE_NAME"
+    },
+    {
+        "value": "ModelId",
+        "label": "D_CMND_ZIGBEE_MODELID"
+    },
+    {
+        "value": "Probe",
+        "label": "D_CMND_ZIGBEE_PROBE"
+    },
+    {
+        "value": "Forget",
+        "label": "D_CMND_ZIGBEE_FORGET"
+    },
+    {
+        "value": "Info",
+        "label": "D_CMND_ZIGBEE_INFO"
+    },
+    {
+        "value": "Save",
+        "label": "D_CMND_ZIGBEE_SAVE"
+    },
+    {
+        "value": "Read",
+        "label": "D_CMND_ZIGBEE_READ"
+    },
+    {
+        "value": "Send",
+        "label": "D_CMND_ZIGBEE_SEND"
+    },
+    {
+        "value": "Write",
+        "label": "D_CMND_ZIGBEE_WRITE"
+    },
+    {
+        "value": "Report",
+        "label": "D_CMND_ZIGBEE_REPORT"
+    },
+    {
+        "value": "ReadConfig",
+        "label": "D_CMND_ZIGBEE_READ_CONFIG"
+    },
+    {
+        "value": "Config",
+        "label": "D_CMND_ZIGBEE_CONFIG"
+    },
+    {
+        "value": "Response",
+        "label": "D_CMND_ZIGBEE_RESPONSE"
+    },
+    {
+        "value": "Bind",
+        "label": "D_CMND_ZIGBEE_BIND"
+    },
+    {
+        "value": "Unbind",
+        "label": "D_CMND_ZIGBEE_UNBIND"
+    },
+    {
+        "value": "BindState",
+        "label": "D_CMND_ZIGBEE_BIND_STATE"
+    },
+    {
+        "value": "Leave",
+        "label": "D_CMND_ZIGBEE_LEAVE"
+    },
+    {
+        "value": "Map",
+        "label": "D_CMND_ZIGBEE_MAP"
+    },
+    {
+        "value": "Ping",
+        "label": "D_CMND_ZIGBEE_PING"
+    },
+    {
+        "value": "Light",
+        "label": "D_CMND_ZIGBEE_LIGHT"
+    },
+    {
+        "value": "Occupancy",
+        "label": "D_CMND_ZIGBEE_OCCUPANCY"
+    },
+    {
+        "value": "Restore",
+        "label": "D_CMND_ZIGBEE_RESTORE"
+    },
+    {
+        "value": "Config",
+        "label": "D_CMND_ZIGBEE_CONFIG"
+    },
+    {
+        "value": "Data",
+        "label": "D_CMND_ZIGBEE_DATA"
+    },
+    {
+        "value": "Scan",
+        "label": "D_CMND_ZIGBEE_SCAN"
+    },
+    {
+        "value": "MOTOR",
+        "label": "D_CMND_MOTOR"
+    },
+    {
+        "value": "Open",
+        "label": "D_CMND_SHUTTER_OPEN"
+    },
+    {
+        "value": "Close",
+        "label": "D_CMND_SHUTTER_CLOSE"
+    },
+    {
+        "value": "Toggle",
+        "label": "D_CMND_SHUTTER_TOGGLE"
+    },
+    {
+        "value": "ToggleDir",
+        "label": "D_CMND_SHUTTER_TOGGLEDIR"
+    },
+    {
+        "value": "Up",
+        "label": "D_CMND_SHUTTER_UP"
+    },
+    {
+        "value": "Down",
+        "label": "D_CMND_SHUTTER_DOWN"
+    },
+    {
+        "value": "Mode",
+        "label": "D_CMND_SHUTTER_MODE"
+    },
+    {
+        "value": "StopOpen",
+        "label": "D_CMND_SHUTTER_STOPOPEN"
+    },
+    {
+        "value": "StopClose",
+        "label": "D_CMND_SHUTTER_STOPCLOSE"
+    },
+    {
+        "value": "StopToggle",
+        "label": "D_CMND_SHUTTER_STOPTOGGLE"
+    },
+    {
+        "value": "StopToggleDir",
+        "label": "D_CMND_SHUTTER_STOPTOGGLEDIR"
+    },
+    {
+        "value": "Change",
+        "label": "D_CMND_SHUTTER_INCDEC"
+    },
+    {
+        "value": "StopPosition",
+        "label": "D_CMND_SHUTTER_STOPPOSITION"
+    },
+    {
+        "value": "Stop",
+        "label": "D_CMND_SHUTTER_STOP"
+    },
+    {
+        "value": "Position",
+        "label": "D_CMND_SHUTTER_POSITION"
+    },
+    {
+        "value": "OpenDuration",
+        "label": "D_CMND_SHUTTER_OPENTIME"
+    },
+    {
+        "value": "CloseDuration",
+        "label": "D_CMND_SHUTTER_CLOSETIME"
+    },
+    {
+        "value": "Relay",
+        "label": "D_CMND_SHUTTER_RELAY"
+    },
+    {
+        "value": "SetHalfway",
+        "label": "D_CMND_SHUTTER_SETHALFWAY"
+    },
+    {
+        "value": "SetClose",
+        "label": "D_CMND_SHUTTER_SETCLOSE"
+    },
+    {
+        "value": "SetOpen",
+        "label": "D_CMND_SHUTTER_SETOPEN"
+    },
+    {
+        "value": "Invert",
+        "label": "D_CMND_SHUTTER_INVERT"
+    },
+    {
+        "value": "Calibration",
+        "label": "D_CMND_SHUTTER_CLIBRATION"
+    },
+    {
+        "value": "MotorDelay",
+        "label": "D_CMND_SHUTTER_MOTORDELAY"
+    },
+    {
+        "value": "Frequency",
+        "label": "D_CMND_SHUTTER_FREQUENCY"
+    },
+    {
+        "value": "Button",
+        "label": "D_CMND_SHUTTER_BUTTON"
+    },
+    {
+        "value": "Lock",
+        "label": "D_CMND_SHUTTER_LOCK"
+    },
+    {
+        "value": "EnableEndStopTime",
+        "label": "D_CMND_SHUTTER_ENABLEENDSTOPTIME"
+    },
+    {
+        "value": "InvertWebButtons",
+        "label": "D_CMND_SHUTTER_INVERTWEBBUTTONS"
+    },
+    {
+        "value": "PWMRange",
+        "label": "D_CMND_SHUTTER_PWMRANGE"
+    },
+    {
+        "value": "UnitTest",
+        "label": "D_CMND_SHUTTER_UNITTEST"
+    },
+    {
+        "value": "HotPlug",
+        "label": "D_CMND_HOTPLUG"
+    },
+    {
+        "value": "BriPreset",
+        "label": "D_CMND_BRI_PRESET"
+    },
+    {
+        "value": "PWMDimmerPWMs",
+        "label": "D_CMND_PWM_DIMMER_PWMS"
+    },
+    {
+        "value": "Ping",
+        "label": "D_CMND_PING"
+    },
+    {
+        "value": "",
+        "label": "D_CMND_BR_RUN"
+    },
+    {
+        "value": "Reset",
+        "label": "D_CMND_BR_RESET"
+    },
+    {
+        "value": "AdcParam",
+        "label": "D_CMND_ADCPARAM"
+    }
+]

@@ -33,6 +33,7 @@ class DeviceStore {
 
 		ipcMain.on("DeviceStore::search", () => this.discover());
 		ipcMain.on("DeviceStore::single", (_, ip) => this.sendSingleDevice(ip));
+		ipcMain.on("DeviceStore::all", () => this.parent.send("DeviceStore::updated", this.devices));
 
 		this.renewInterval();
 
@@ -49,13 +50,14 @@ class DeviceStore {
 		this.parent.send("DeviceStore::device", this.devices[ip]);
 	}
 
-	renewInterval() {
+	renewInterval(immediate = true) {
 		if (this.refreshInterval)
 			clearInterval(this.refreshInterval);
 
 		Std.Log(`[DeviceStore] Update interval changed to ${this.interval}`, Std.LogLevel.INFO);
 		this.refreshInterval = setInterval(() => this.update(), parseInt(this.interval * 1000));
-		this.update();
+		if (immediate)
+			this.update();
 	}
 
 	discover() {
@@ -81,24 +83,45 @@ class DeviceStore {
 	update() {
 		if (this.discovering)
 			return;
+
+		const oldDevices = {...this.devices};
+		let   different  = 0;
+
 		const auth = this.useCredentials ? `${this.tasmotaUser}:${this.tasmotaPassword}@` : "";
-		for (const device of Object.values(this.devices)) {
-			axios({
+		const promises = [];
+
+		for (const device of Object.values(this.devices))
+			promises.push(axios({
 				method  : "get",
 				url     : `http://${auth}${device.StatusNET.IPAddress}/cm?cmnd=status%200`,
 				timeout : 500
-			}).then(response => {
-				if (!response.data.hasOwnProperty("Status") || response.status !== 200)
-					return;
+			}));
 
-				this.devices[device.StatusNET.IPAddress] = new TasmotaDevice(response.data, true);
-				Std.Log(`Device '${response.data.Status.DeviceName}' updated.`);
-			}).catch(error => {
-				if (this.devices.hasOwnProperty(device.StatusNET.IPAddress))
-					this.devices[device.StatusNET.IPAddress].alive = false;
-			});
-		}
-		this.parent.send("DeviceStore::updated", Object.values(this.devices));
+		Promise.allSettled(promises).then((responses) => {
+			for (const response of responses) {
+				if (response.status === "rejected") {
+					this.devices[response.value.request.host].alive = false;
+					different++;
+					continue;
+				}
+				if (!response.value.data.hasOwnProperty("Status") || response.value.status !== 200)
+					continue;
+
+				const newDevice  = new TasmotaDevice(response.value.data, true);
+				const oldDevice  = oldDevices[response.value.data.StatusNET.IPAddress];
+				const difference = newDevice.differs(oldDevice);
+
+				if (difference === false)
+					continue;
+
+				this.devices[newDevice.StatusNET.IPAddress] = newDevice;
+				different++;
+				Std.Log(`Device '${newDevice.Status.DeviceName}' updated.`);
+			}
+
+			if (different > 0)
+				this.parent.send("DeviceStore::updated", this.devices);
+		}).catch(error => {});
 	}
 }
 

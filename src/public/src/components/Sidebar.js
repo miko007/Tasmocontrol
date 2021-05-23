@@ -39,7 +39,7 @@ const Sidebar = ({width, resize, devices}) => {
 			</section>
 			<section className="nav-group">
 				<h5 className="nav-group-title">Devices</h5>
-				{devices.map(device => {
+				{Object.values(devices).map(device => {
 					return (
 						<span className="nav-group-item" key={device.Status.DeviceName}>
 							<span className="icon icon-record" style={{color : device.Status.Power === 0 ? "#ccc" : "#fdbc40"}}></span>

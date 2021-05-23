@@ -1,46 +1,59 @@
-import React, {useEffect, useState, useCallback} from "react";
-import {useParams} from "react-router-dom";
+import React, {useEffect, useState, useMemo, useCallback} from "react";
+import {useParams, Switch, Route} from "react-router-dom";
 
 import NothingHere from "../../shared/NothingHere";
 
-const DeviceDetails = () => {
+import Tabs from "./Tabs";
+
+import General from "./tabs/General";
+import Console from "./tabs/Console";
+
+const DeviceDetails = ({devices, setDevices}) => {
 	const {ip} = useParams();
-	const [device, setDevice] = useState(null);
+	const [power, setPower] = useState(false);
 
-	useEffect(() => {
-		if (!ip)
-			return;
+	const device = useMemo(() => {
+		if (!devices || !ip || !devices.hasOwnProperty(ip))
+			return null;
 
-		window.api.deviceReceive(device => setDevice(device));
-		window.api.deviceRequest(ip);
-	}, [ip]);
+		return devices[ip];
+	}, [devices, ip]);
 
 	const switchDevice = useCallback(() => {
+		const newDevices = {...devices};
+		const power      = device?.Status.Power === 1 ? 0 : 1;
+
+		setPower(power);
+		newDevices[ip].Status.Power = power;
+		setDevices(newDevices)
+
+		window.api.commandSend(ip, "Power", power);
+	}, [devices, setDevices, device, ip]);
+
+	useEffect(() => {
 		if (!device)
 			return;
-		const newDevice = {...device};
-		const power     = device.Status.Power === "0" ? "1" : "0";
-		newDevice.Status.Power = power;
-		setDevice(newDevice);
 
-		window.api.commandSend(device.StatusNET.IPAddress, "Power", power);
+		setPower(device.Status.Power === 1);
 	}, [device]);
 
-	if (!device)
+	if (!ip || !devices)
 		return <NothingHere text="No device data available" icon="hourglass" />;
 
 	return (
 		<section className="wrapper">
 			<h4>
-				<span className="icon icon-record"></span> {device.Status.FriendlyName}
+				<span className="icon icon-record"></span> {device?.Status.FriendlyName}
 				<label className="form-switch pull-right" style={{verticalAlign : "middle"}}>
-					<input type="checkbox" name="useCredentials" checked={device.Status.Power !== "0"} onChange={switchDevice} />
+					<input type="checkbox" name="useCredentials" checked={power} onChange={switchDevice} />
 					<i></i>
 				</label>
 			</h4>
-			<pre>
-				{JSON.stringify(device, null, 4)}
-			</pre>
+			<Tabs device={device} />
+			<Switch>
+				<Route exact path={`/device/:ip`} render={() => <General device={device} />} />
+				<Route path={`/device/:ip/console`} render={() => <Console device={device} />} />
+			</Switch>
 		</section>
 	);
 };
