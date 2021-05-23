@@ -6,13 +6,16 @@ const path                 = require("path");
 const MainWindow    = require("./MainWindow");
 const DeviceStore   = require("./DeviceStore");
 const ConfigService = require("./services/ConfigService");
+const CommandSerice = require("./services/CommandService");
 const Std           = require("./Std");
 
 class Tasmocontrol {
 	constructor() {
-		this.mainWindow    = null;
-		this.deviceStore   = null;
-		this.configService = null;
+		this.mainWindow     = null;
+		this.deviceStore    = null;
+		this.configService  = null;
+		this.commandService = null;
+
 		app.whenReady().then(() => this.init());
 
 		app.on("window-all-closed", () => {
@@ -47,8 +50,9 @@ class Tasmocontrol {
 	}
 
 	init() {
-		this.configService = new ConfigService(this);
-		this.deviceStore   = new DeviceStore(this);
+		this.configService  = new ConfigService(this);
+		this.deviceStore    = new DeviceStore(this);
+		this.commandService = new CommandSerice(this);
 		this.createWindow();
 	}
 

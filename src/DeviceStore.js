@@ -32,6 +32,8 @@ class DeviceStore {
 
 
 		ipcMain.on("DeviceStore::search", () => this.discover());
+		ipcMain.on("DeviceStore::single", (_, ip) => this.sendSingleDevice(ip));
+
 		this.renewInterval();
 
 		parent.configService.addListener("interval", newValue => {
@@ -41,6 +43,10 @@ class DeviceStore {
 		parent.configService.addListener("useCredentials", newValue => this.useCredentials = newValue);
 		parent.configService.addListener("tasmotaPassword", newValue => this.tasmotaPassword = newValue);
 		parent.configService.addListener("tasmotaUser", newValue => this.tasmotaUser = newValue);
+	}
+
+	sendSingleDevice(ip) {
+		this.parent.send("DeviceStore::device", this.devices[ip]);
 	}
 
 	renewInterval() {
