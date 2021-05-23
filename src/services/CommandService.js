@@ -17,19 +17,21 @@ class CommandService {
 		ipcMain.on("CommandService::send", (_, [ip, command, payload]) => this.send(ip, command, payload));
 		ipcMain.handle("CommandService::sendImmediate", async (event, [ip, command]) => {
 			console.log(this.auth);
-			const auth     = this.useCredentials ? `${this.tasmotaUser}:${this.tasmotaPassword}@` : "";
-			const response = await axios.get(`http://${auth}${ip}/cm?cmnd=${encodeURIComponent(command)}`);
+			const auth = this.useCredentials ? `${this.tasmotaUser}:${this.tasmotaPassword}@` : "";
+			try {
+				const response = await axios.get(`http://${auth}${ip}/cm?cmnd=${encodeURIComponent(command)}`);
 
-			return response.data;
+				return response.data;
+			} catch (error) {
+				return null;
+			}
+
 		});
 	}
 
-	get auth() {
-		this.useCredentials ? `${this.tasmotaUser}:${this.tasmotaPassword}@` : "";
-	}
-
 	send(ip, command, payload) {
-		return axios.get(`http://${this.auth}${ip}/cm?cmnd=${command}%20${payload}`);
+		const auth = this.useCredentials ? `${this.tasmotaUser}:${this.tasmotaPassword}@` : "";
+		return axios.get(`http://${auth}${ip}/cm?cmnd=${command}%20${payload}`);
 	}
 }
 

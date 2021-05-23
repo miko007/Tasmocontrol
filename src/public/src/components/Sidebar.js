@@ -41,10 +41,10 @@ const Sidebar = ({width, resize, devices}) => {
 				<h5 className="nav-group-title">Devices</h5>
 				{Object.values(devices).map(device => {
 					return (
-						<span className="nav-group-item" key={device.Status.DeviceName}>
+						<NavLink exact to={`/device/${device.StatusNET.IPAddress}`} className="nav-group-item" key={device.Status.DeviceName}>
 							<span className="icon icon-record" style={{color : device.Status.Power === 0 ? "#ccc" : "#fdbc40"}}></span>
 							{device.Status.FriendlyName}
-						</span>
+						</NavLink>
 					);
 				})}
 			</section>

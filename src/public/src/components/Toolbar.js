@@ -13,7 +13,7 @@ const Toolbar = ({config}) => {
 			<Switch>
 				<Route exact path="/" render={() => <DevicesListToolbar config={config} />} />
 				<Route path="/settings" render={() => <SettingsToolbar config={config} />} />
-				<Route exact path="/device/:id" render={() => <DeviceDetailsToolBar config={config} />} />
+				<Route path="/device/:id" render={() => <DeviceDetailsToolBar config={config} />} />
 			</Switch>
 		</section>
 	);

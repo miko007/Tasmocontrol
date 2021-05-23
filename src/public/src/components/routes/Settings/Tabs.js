@@ -7,12 +7,12 @@ const Tabs = () => {
 			<NavLink exact to="/settings" className="tab-item" activeClassName="active">
 				Application
 			</NavLink>
-			<div className="tab-item">
-				Network
-			</div>
 			<NavLink exact to="/settings/tasmota" className="tab-item" activeClassName="active">
 				Tasmota
 			</NavLink>
+			<div className="tab-item">
+				Network
+			</div>
 		</div>
 	);
 };

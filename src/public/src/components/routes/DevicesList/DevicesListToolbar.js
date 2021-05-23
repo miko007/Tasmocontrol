@@ -22,7 +22,7 @@ const DevicesListToolBox = ({config}) => {
 
 	return (
 		<>
-			<button className="btn btn-warning" title="Refresh device list" onClick={refresh} disabled={disabled}>
+			<button className="btn btn-warning pull-right" title="Refresh device list" onClick={refresh} disabled={disabled}>
 				<span className={`icon icon-cw${loading ? " anim-loading" : ""}`}></span>
 			</button>
 			<div className="btn-group">

@@ -14,6 +14,10 @@
 
 @import "overrides";
 
+* {
+	-webkit-user-drag: none;
+}
+
 main.app {
 	height: 100vh;
 	width: 100vw;

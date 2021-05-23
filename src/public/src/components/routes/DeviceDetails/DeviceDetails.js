@@ -1,7 +1,8 @@
-import React, {useEffect, useState, useMemo, useCallback} from "react";
+import React, {useMemo} from "react";
 import {useParams, Switch, Route} from "react-router-dom";
 
-import NothingHere from "../../shared/NothingHere";
+import NothingHere  from "../../shared/NothingHere";
+import DeviceSwitch from "../../shared/DeviceSwitch";
 
 import Tabs from "./Tabs";
 
@@ -10,7 +11,6 @@ import Console from "./tabs/Console";
 
 const DeviceDetails = ({devices, setDevices}) => {
 	const {ip} = useParams();
-	const [power, setPower] = useState(false);
 
 	const device = useMemo(() => {
 		if (!devices || !ip || !devices.hasOwnProperty(ip))
@@ -19,35 +19,14 @@ const DeviceDetails = ({devices, setDevices}) => {
 		return devices[ip];
 	}, [devices, ip]);
 
-	const switchDevice = useCallback(() => {
-		const newDevices = {...devices};
-		const power      = device?.Status.Power === 1 ? 0 : 1;
-
-		setPower(power);
-		newDevices[ip].Status.Power = power;
-		setDevices(newDevices)
-
-		window.api.commandSend(ip, "Power", power);
-	}, [devices, setDevices, device, ip]);
-
-	useEffect(() => {
-		if (!device)
-			return;
-
-		setPower(device.Status.Power === 1);
-	}, [device]);
-
 	if (!ip || !devices)
 		return <NothingHere text="No device data available" icon="hourglass" />;
 
 	return (
 		<section className="wrapper">
 			<h4>
-				<span className="icon icon-record"></span> {device?.Status.FriendlyName}
-				<label className="form-switch pull-right" style={{verticalAlign : "middle"}}>
-					<input type="checkbox" name="useCredentials" checked={power} onChange={switchDevice} />
-					<i></i>
-				</label>
+				<span className="icon icon-record" style={{color : !device?.alive ? "#fc605b" : "#34c84a", marginRight : "1rem"}}></span> {device?.Status.FriendlyName}
+				<DeviceSwitch device={device} devices={devices} setDevices={setDevices} />
 			</h4>
 			<Tabs device={device} />
 			<Switch>

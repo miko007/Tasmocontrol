@@ -45,7 +45,7 @@ const App = () => {
 					<section className="content" style={{width : `${100 - sidebarWidth}vw`}}>
 						<Switch>
 							<Route path="/device/:ip" render={() => <DeviceDetails devices={devices} setDevices={setDevices} />} />
-							<Route exact path="/" render={() => <DevicesList devices={devices} setDevice={setDevice} config={config} />} />
+							<Route exact path="/" render={() => <DevicesList devices={devices} setDevice={setDevice} config={config} setDevices={setDevices} />} />
 							<Route path="/settings" render={() => <Settings config={config} setConfig={handleInput} />} />
 							<Route render={() => <Redirect to="/"/>}/>
 						</Switch>

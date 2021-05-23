@@ -2,11 +2,12 @@ import React from "react";
 
 import {NavLink} from "react-router-dom";
 
-import NothingHere   from "../../shared/NothingHere";
+import NothingHere  from "../../shared/NothingHere";
+import DeviceSwitch from "../../shared/DeviceSwitch";
 
 import NoCredentials from "./NoCredentials";
 
-const DevicesList = ({devices, setDevice, config}) => {
+const DevicesList = ({devices, setDevice, setDevices, config}) => {
 
 	const toggleDevice = event => {
 		console.log(event.target.name);
@@ -35,10 +36,7 @@ const DevicesList = ({devices, setDevice, config}) => {
 									<i className="icon icon-info-circled"></i>
 								</button>
 							</NavLink>
-							<label className="form-switch">
-								<input type="checkbox" name={device.Status.DeviceName} onChange={toggleDevice} checked={device.Status.Power !== 0} />
-								<i></i>
-							</label>
+							<DeviceSwitch devices={devices} setDevices={setDevices} device={device} />
 						</section>
 					</div>
 				</li>

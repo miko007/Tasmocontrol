@@ -4,7 +4,7 @@ import NothingHere from "../../shared/NothingHere";
 
 const NoCredentials = () => {
 	return (
-		<NothingHere text={["You have to setup TASMOTA credentials under ", <code>Settings &rarr; Tasmota</code>, " before scanning can begin..."]} icon="lock-open" />
+		<NothingHere text={["You have to setup TASMOTA credentials under ", <code key="path">Settings &rarr; Tasmota</code>, " before scanning can begin..."]} icon="lock-open" />
 	);
 };
 
