@@ -4,6 +4,8 @@
 }
 
 .btn {
+	text-decoration: none;
+
 	&.btn-primary, &.btn-warning {
 		.icon {
 			color: white;
