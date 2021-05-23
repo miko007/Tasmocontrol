@@ -1,10 +1,6 @@
 "use strict";
 
-try {
-	const electron = require("electron");
-} catch (error) {
-	const electron = null;
-}
+const electron = require("electron");
 const Chalk    = require("chalk");
 
 class Std {
@@ -53,10 +49,8 @@ class Std {
 	}
 
 	static IsDev() {
-		if (typeof electron === "undefined")
-			return true;
 		if (typeof electron === "string")
-			Std.Log(`[Std] Electron not found`, Std.LogLevel.FATAL);
+			return true;
 
 		const isEnvSet   = "ELECTRON_IS_DEV" in process.env;
 		const getFromEnv = parseInt(process.env.ELECTRON_IS_DEV, 10) === 1;

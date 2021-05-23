@@ -9,7 +9,7 @@
     "build": "npm i && npm run build:assets && npm run build:react",
     "build:react": "cd src/public && npm run build",
     "build:assets": "icon-gen -i assets/appIcon.svg -o ./assets --icns && xattr -cr assets/appIcon.svg",
-    "prefab" : "node util/prefabCommands.js",
+    "prefab": "node util/prefabCommands.js",
     "dist": "npm run clean && npm run build && electron-builder -m",
     "clean": "rm -rf node_modules && rm -rf src/public/build/* && rm -rf dist && rm -f assets/*.icns"
   },
@@ -23,7 +23,8 @@
     },
     "files": [
       "**/*",
-      "assets/*.svg"
+      "assets/*.svg",
+      "package.json"
     ],
     "mac": {
       "category": "public.app-category.utilities",
