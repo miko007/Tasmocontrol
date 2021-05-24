@@ -20,4 +20,16 @@
 			}
 		}
 	}
+
+	&.small {
+		label {
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		input[type=checkbox] {
+			margin: 0 1rem 0 0;
+			vertical-align: middle;
+		}
+	}
 }
