@@ -29,7 +29,6 @@ fs.readFile(path.join(__dirname, "..", "tasmota", "i18n.h"), {encoding : "utf8"}
 	}
 
 	fs.writeFile(commandsFilePath, JSON.stringify(commands, null, 4));
-	console.log(commands);
 	Std.Log(`${commands.length} commands have been added to '${commandsFilePath}'`, Std.LogLevel.SUCCESS);
 
 }).catch(error => console.error(error));

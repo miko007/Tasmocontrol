@@ -53,10 +53,6 @@ const App = () => {
 		setConfig(newConfig);
 	}
 
-	useEffect(() => {
-		console.log("Device changed", device)
-	}, [device]);
-
 	const sendChanges = useCallback(() => {
 		SaveTasmota(devices, setDevices, device, isSaving, setIsSaving);
 	}, [device, setDevices, devices, isSaving, setIsSaving]);

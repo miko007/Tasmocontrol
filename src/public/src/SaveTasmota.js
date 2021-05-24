@@ -11,8 +11,6 @@ const SaveTasmota = (devices, setDevices, device, isSaving, setIsSaving) => {
 	if (device.Status.FriendlyName !== prevState.Status.FriendlyName)
 		promises.push(window.api.commandImmediate(ip, `FriendlyName ${device.Status.FriendlyName}`));
 
-	console.log(prevState, device);
-
 	Promise.allSettled(promises).then(results => {
 		console.log("RES", results);
 
