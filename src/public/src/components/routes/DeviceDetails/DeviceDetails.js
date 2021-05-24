@@ -30,8 +30,8 @@ const DeviceDetails = () => {
 			</h4>
 			<Tabs device={device} />
 			<Switch>
-				<Route exact path={`/device/:ip`} render={() => <General device={device} />} />
-				<Route path={`/device/:ip/console`} render={() => <Console device={device} />} />
+				<Route exact path={`/device/:ip`} component={General} />
+				<Route path={`/device/:ip/console`} component={Console} />
 			</Switch>
 		</section>
 	);

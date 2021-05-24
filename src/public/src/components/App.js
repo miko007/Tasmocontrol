@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useCallback} from "react";
 
 import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
+import _ from "lodash";
 
 import DeviceContext from "./context/DeviceContext";
 
@@ -11,11 +12,14 @@ import DevicesList   from "./routes/DevicesList/DevicesList";
 import DeviceDetails from "./routes/DeviceDetails/DeviceDetails";
 import Settings      from "./routes/Settings/Settings";
 
+import SaveTasmota from "../SaveTasmota";
+
 const App = () => {
 	const [config, setConfig]             = useState({});
 	const [devices, setDevices]           = useState([]);
 	const [device, setDevice]             = useState(null);
 	const [sidebarWidth, setSidebarWidth] = useState(30);
+	const [isSaving, setIsSaving]         = useState(false);
 
 	useEffect(() => {
 		window.api.searchUpdated(devices => {
@@ -24,15 +28,17 @@ const App = () => {
 		window.api.configUpdated(newConfig =>  {
 			setConfig(newConfig)
 		});
-		window.api.deviceRequestAll();
+		window.devices.requestAll();
 		window.api.configRequest();
 	}, []);
 
 	const setDeviceObject = useCallback((ip = null) => {
+		const localDevices = {...devices}
+
 		if (!ip)
-			setDevice(oldDevice => oldDevice === null ? null : devices[oldDevice.StatusNET.IPAddress]);
+			setDevice(oldDevice => oldDevice === null || typeof oldDevice === "undefined" ? null : _.cloneDeep(localDevices[oldDevice.StatusNET.IPAddress]));
 		else
-			setDevice(devices.hasOwnProperty(ip) ? devices[ip] : null);
+			setDevice(localDevices.hasOwnProperty(ip) ? _.cloneDeep(localDevices[ip]) : null);
 	}, [devices]);
 
 	useEffect(() => {
@@ -47,12 +53,24 @@ const App = () => {
 		setConfig(newConfig);
 	}
 
+	useEffect(() => {
+		console.log("Device changed", device)
+	}, [device]);
+
+	const sendChanges = useCallback(() => {
+		SaveTasmota(devices, setDevices, device, isSaving, setIsSaving);
+	}, [device, setDevices, devices, isSaving, setIsSaving]);
+
 	return (
 		<DeviceContext.Provider value={{
-			devices     : devices,
-			setDevices  : setDevices,
-			device      : device,
-			setDevice   : setDeviceObject
+			devices,
+			setDevices,
+			device,
+			sendChanges,
+			isSaving,
+			setIsSaving,
+			setDevice    : setDeviceObject,
+			updateDevice : setDevice
 		}}>
 			<Router>
 				<section className="mainWindow">

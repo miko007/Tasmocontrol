@@ -1,4 +1,4 @@
-import React, {useCallback, useContext} from "react";
+import React, {useCallback, useContext, useEffect} from "react";
 
 import {NavLink} from "react-router-dom";
 
@@ -6,6 +6,7 @@ import DeviceContext from "./context/DeviceContext";
 
 const Sidebar = ({width, resize}) => {
 	const {devices} = useContext(DeviceContext);
+
 	const mouseMove = useCallback(event => {
 		const x = event.clientX + 1;
 
@@ -42,11 +43,11 @@ const Sidebar = ({width, resize}) => {
 			</section>
 			<section className="nav-group">
 				<h5 className="nav-group-title">Devices</h5>
-				{Object.values(devices).map(device => {
+				{Object.values(devices).map(dev => {
 					return (
-						<NavLink exact to={`/device/${device.StatusNET.IPAddress}`} className="nav-group-item" key={device.Status.DeviceName}>
-							<span className="icon icon-record" style={{color : device.Status.Power === 0 ? "#ccc" : "#fdbc40"}}></span>
-							{device.Status.FriendlyName}
+						<NavLink exact to={`/device/${dev.StatusNET.IPAddress}`} className="nav-group-item" key={dev.Status.DeviceName}>
+							<span className="icon icon-record" style={{color : dev.Status.Power === 0 ? "#ccc" : "#fdbc40"}}></span>
+							{dev.Status.FriendlyName}
 						</NavLink>
 					);
 				})}

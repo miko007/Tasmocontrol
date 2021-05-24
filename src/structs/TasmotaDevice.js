@@ -1,9 +1,12 @@
 "use strict";
 
+const Std = require("../Std");
+const _   = require("lodash");
+
 class TasmotaDevice {
 	constructor(data, alive = false) {
 		this.alive = alive;
-		Object.assign(this, data);
+		Object.assign(this, _.cloneDeep(data));
 	}
 
 	differs(other) {
@@ -12,7 +15,8 @@ class TasmotaDevice {
 
 		return (
 			this.Status.Power        !== other.Status.Power ||
-			this.StatusNET.IPAddress !== other.StatusNET.IPAddress
+			this.StatusNET.IPAddress !== other.StatusNET.IPAddress ||
+			!_.isEqual(this.Status.FriendlyName, other.Status.FriendlyName)
 		);
 	}
 }

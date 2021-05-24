@@ -20,3 +20,7 @@ contextBridge.exposeInMainWorld(
         windowMinMax : () => ipcRenderer.send("MainWindow::minMax")
     }
 );
+
+contextBridge.exposeInMainWorld("devices", {
+        requestAll : () => ipcRenderer.send("DeviceStore::all")
+});

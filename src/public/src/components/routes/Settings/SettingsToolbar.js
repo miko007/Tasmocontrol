@@ -2,7 +2,6 @@ import React, {useCallback} from "react";
 
 const SettingsToolbar = ({config}) => {
 	const save = useCallback(() => {
-		console.log(config);
 		if (!config)
 			return;
 

@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import {NavLink} from "react-router-dom";
 
-const Tabs = ({device}) => {
+import DeviceContext from "../../context/DeviceContext";
 
-	const ip = device?.StatusNET.IPAddress;
+const Tabs = () => {
+	const {device} = useContext(DeviceContext);
+	const ip       = device?.StatusNET.IPAddress;
 
 	return (
 		<div className="tab-group">

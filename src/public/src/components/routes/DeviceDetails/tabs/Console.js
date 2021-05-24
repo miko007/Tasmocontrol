@@ -6,7 +6,7 @@ import TasmocontrolInfo from "../../../../../package.json";
 
 import Commands from "../../../../assets/commands.json";
 
-const Console = ({device}) => {
+const Console = () => {
 	const {ip} = useParams();
 	const [commands, setCommands] = useState({
 		whoami : () => "MikO",
