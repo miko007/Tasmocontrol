@@ -8,7 +8,7 @@ import DeviceDetailsToolBar from "./routes/DeviceDetails/DeviceDetailsToolbar";
 const Toolbar = ({config}) => {
 
 	return (
-		<section className="toolbar-actions mainToolbar">
+		<section className="toolbar-actions mainToolbar" onDoubleClick={event => event.stopPropagation()}>
 			<span className="btn" style={{height: "24px", display : "inline-block", margin : "0", padding : "0"}}></span>
 			<Switch>
 				<Route exact path="/" render={() => <DevicesListToolbar config={config} />} />

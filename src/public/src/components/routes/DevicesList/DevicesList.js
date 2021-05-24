@@ -1,18 +1,16 @@
-import React from "react";
+import React, {useContext} from "react";
 
 import {NavLink} from "react-router-dom";
+
+import DeviceContext from "../../context/DeviceContext";
 
 import NothingHere  from "../../shared/NothingHere";
 import DeviceSwitch from "../../shared/DeviceSwitch";
 
 import NoCredentials from "./NoCredentials";
 
-const DevicesList = ({devices, setDevice, setDevices, config}) => {
-
-	const toggleDevice = event => {
-		console.log(event.target.name);
-	}
-
+const DevicesList = ({config}) => {
+	const {devices, setDevices} = useContext(DeviceContext);
 	if (typeof config.useCredentials === "undefined" || (config.useCredentials && (!config.tasmotaUser || !config.tasmotaPassword)))
 		return <NoCredentials />
 
@@ -32,7 +30,7 @@ const DevicesList = ({devices, setDevice, setDevices, config}) => {
 						{device.StatusFWR.Version.replace(/\(.*\)/, "")}
 						<section className="additional-controls">
 							<NavLink to={`/device/${device.StatusNET.IPAddress}`}>
-								<button className="btn" onClick={() => setDevice(device)}>
+								<button className="btn">
 									<i className="icon icon-info-circled"></i>
 								</button>
 							</NavLink>

@@ -1,8 +1,11 @@
-import React, {useCallback} from "react";
+import React, {useCallback, useContext} from "react";
 
 import {NavLink} from "react-router-dom";
 
-const Sidebar = ({width, resize, devices}) => {
+import DeviceContext from "./context/DeviceContext";
+
+const Sidebar = ({width, resize}) => {
+	const {devices} = useContext(DeviceContext);
 	const mouseMove = useCallback(event => {
 		const x = event.clientX + 1;
 

@@ -1,6 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useCallback} from "react";
 
 import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
+
+import DeviceContext from "./context/DeviceContext";
 
 import Titlebar   from "./Titlebar";
 import Sidebar    from "./Sidebar";
@@ -24,9 +26,18 @@ const App = () => {
 		});
 		window.api.deviceRequestAll();
 		window.api.configRequest();
+	}, []);
 
-		console.log(device);
-	}, [device]);
+	const setDeviceObject = useCallback((ip = null) => {
+		if (!ip)
+			setDevice(oldDevice => oldDevice === null ? null : devices[oldDevice.StatusNET.IPAddress]);
+		else
+			setDevice(devices.hasOwnProperty(ip) ? devices[ip] : null);
+	}, [devices]);
+
+	useEffect(() => {
+		setDeviceObject();
+	}, [devices, setDeviceObject]);
 
 	const handleInput = event => {
 		const newConfig = {...config};
@@ -37,22 +48,29 @@ const App = () => {
 	}
 
 	return (
-		<Router>
-			<section className="mainWindow">
-				<Titlebar config={config} />
-				<main className="app">
-					<Sidebar width={sidebarWidth} resize={setSidebarWidth} devices={devices} />
-					<section className="content" style={{width : `${100 - sidebarWidth}vw`}}>
-						<Switch>
-							<Route path="/device/:ip" render={() => <DeviceDetails devices={devices} setDevices={setDevices} />} />
-							<Route exact path="/" render={() => <DevicesList devices={devices} setDevice={setDevice} config={config} setDevices={setDevices} />} />
-							<Route path="/settings" render={() => <Settings config={config} setConfig={handleInput} />} />
-							<Route render={() => <Redirect to="/"/>}/>
-						</Switch>
-					</section>
-				</main>
-			</section>
-		</Router>
+		<DeviceContext.Provider value={{
+			devices     : devices,
+			setDevices  : setDevices,
+			device      : device,
+			setDevice   : setDeviceObject
+		}}>
+			<Router>
+				<section className="mainWindow">
+					<Titlebar config={config} />
+					<main className="app">
+						<Sidebar width={sidebarWidth} resize={setSidebarWidth} />
+						<section className="content" style={{width : `${100 - sidebarWidth}vw`}}>
+							<Switch>
+								<Route path="/device/:ip" render={() => <DeviceDetails />} />
+								<Route exact path="/" render={() => <DevicesList config={config} />} />
+								<Route path="/settings" render={() => <Settings config={config} setConfig={handleInput} />} />
+								<Route render={() => <Redirect to="/"/>}/>
+							</Switch>
+						</section>
+					</main>
+				</section>
+			</Router>
+		</DeviceContext.Provider>
 	)
 }
 

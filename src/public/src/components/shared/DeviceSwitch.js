@@ -1,7 +1,10 @@
-import React, {useCallback, useState, useEffect} from "react";
+import React, {useCallback, useState, useEffect, useContext} from "react";
 
-const DeviceSwitch = ({devices, setDevices, device}) => {
-	const [power, setPower] = useState(false);
+import DeviceContext from "../context/DeviceContext";
+
+const DeviceSwitch = ({device}) => {
+	const {devices, setDevices} = useContext(DeviceContext);
+	const [power, setPower]     = useState(false);
 
 	useEffect(() => {
 		if (!device)
@@ -11,9 +14,13 @@ const DeviceSwitch = ({devices, setDevices, device}) => {
 	}, [device]);
 
 	const switchDevice = useCallback(() => {
+		if (!device)
+			return;
 		const newDevices = {...devices};
 		const power      = device?.Status.Power === 1 ? 0 : 1;
 
+		if (!newDevices.hasOwnProperty(device.StatusNET.IPAddress))
+			return;
 		setPower(power);
 		newDevices[device?.StatusNET.IPAddress].Status.Power = power;
 		setDevices(newDevices);
