@@ -20,7 +20,7 @@ class CommandService {
 			const auth = this.useCredentials ? `${this.tasmotaUser}:${this.tasmotaPassword}@` : "";
 			try {
 				const response = await axios.get(`http://${auth}${ip}/cm?cmnd=${encodeURIComponent(command)}`);
-				
+
 				return response.data;
 			} catch (error) {
 				return null;

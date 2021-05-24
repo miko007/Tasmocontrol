@@ -12,9 +12,12 @@ const Tabs = () => {
 			<NavLink exact to={`/device/${ip}`} className="tab-item" activeClassName="active">
 				General
 			</NavLink>
-			<div className="tab-item">
+			<NavLink exact to={`/device/${ip}/mqtt`} className="tab-item" activeClassName="active">
+				MQTT
+			</NavLink>
+			<NavLink exact to={`/device/${ip}/network`} className="tab-item" activeClassName="active">
 				Network
-			</div>
+			</NavLink>
 			<NavLink exact to={`/device/${ip}/console`} className="tab-item" activeClassName="active">
 				Console
 			</NavLink>

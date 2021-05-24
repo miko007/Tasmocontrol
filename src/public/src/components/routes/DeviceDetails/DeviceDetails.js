@@ -10,6 +10,8 @@ import Tabs from "./Tabs";
 
 import General from "./tabs/General";
 import Console from "./tabs/Console";
+import MQTT    from "./tabs/MQTT";
+import Network from "./tabs/Network";
 
 const DeviceDetails = () => {
 	const {devices, device, setDevice} = useContext(DeviceContext);
@@ -32,6 +34,8 @@ const DeviceDetails = () => {
 			<Switch>
 				<Route exact path={`/device/:ip`} component={General} />
 				<Route path={`/device/:ip/console`} component={Console} />
+				<Route path={`/device/:ip/mqtt`} component={MQTT} />
+				<Route path={`/device/:ip/network`} component={Network} />
 			</Switch>
 		</section>
 	);

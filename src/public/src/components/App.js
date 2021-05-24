@@ -11,6 +11,7 @@ import Sidebar    from "./Sidebar";
 import DevicesList   from "./routes/DevicesList/DevicesList";
 import DeviceDetails from "./routes/DeviceDetails/DeviceDetails";
 import Settings      from "./routes/Settings/Settings";
+import Theme         from "./routes/Theme/Theme";
 
 import SaveTasmota from "../SaveTasmota";
 
@@ -78,6 +79,7 @@ const App = () => {
 								<Route path="/device/:ip" render={() => <DeviceDetails />} />
 								<Route exact path="/" render={() => <DevicesList config={config} />} />
 								<Route path="/settings" render={() => <Settings config={config} setConfig={handleInput} />} />
+								<Route path="/themes" render={() => <Theme />} />
 								<Route render={() => <Redirect to="/"/>}/>
 							</Switch>
 						</section>

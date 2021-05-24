@@ -25,9 +25,6 @@ const General = () => {
 				<label>Friendly Name</label>
 				<input type="text" name="Status.FriendlyName" className="form-control" value={device?.Status.FriendlyName || ""} onChange={handleInput} />
 			</p>
-			<pre>
-				{JSON.stringify(device, null ,4)}
-			</pre>
 		</>
 	);
 };

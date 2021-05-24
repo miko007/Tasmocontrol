@@ -1,0 +1,51 @@
+.themesTab {
+	.selector {
+		display: grid;
+		grid-template-columns: 3fr 2fr;
+		grid-gap: 4rem;
+	}
+
+	.preview {
+		background: #252525;
+		color: white;
+		min-height: 400px;
+		box-sizing: border-box;
+		padding: 2rem;
+		font-size: 0.5rem;
+		text-align: center;
+
+		h2 {
+			font-size: 1.5em;
+			padding: 0;
+			margin: 0.5em 0 1em 0;
+		}
+
+		h3 {
+			font-size: 1.2em;
+			padding: 0;
+			margin: 0;
+		}
+
+		.state {
+			font-size: 3em;
+		}
+
+		button {
+			display: block;
+			width: 100%;
+			background: #1fa3ec;
+			border: none;
+			padding: 0.5em;
+			border-radius: 0.3em;
+			margin-bottom: 0.5em;
+
+			&:first-of-type {
+				margin-bottom: 1em;
+			}
+
+			&:last-child {
+				background: #d43535;
+			}
+		}
+	}
+}
