@@ -1,11 +1,11 @@
 "use strict";
 
-const {ipcMain, Notification} = require("electron");
-const DiscoveryService        = require("./services/DiscoveryService");
-const axios                   = require("axios");
-const Std                     = require("./Std");
-const FileService             = require("./services/FileService");
-const TasmotaDevice           = require("./structs/TasmotaDevice");
+const {ipcMain, Notification, dialog} = require("electron");
+const DiscoveryService                = require("./services/DiscoveryService");
+const axios                           = require("axios");
+const Std                             = require("./Std");
+const FileService                     = require("./services/FileService");
+const TasmotaDevice                   = require("./structs/TasmotaDevice");
 
 class DeviceStore {
 	constructor(parent) {
@@ -61,6 +61,24 @@ class DeviceStore {
 	}
 
 	discover() {
+		const choice = dialog.showMessageBoxSync(this.parent.mainWindow, {
+			type      : "question",
+			title     : "Rescan for devices",
+			message   : "Do you really want to perform a new search?",
+			detail    : "This action will remove all existing devices from your current device list.",
+			buttons   : [
+				"No, thanks",
+				"Yes, i am shure"
+			],
+			defaultId : 0
+		});
+
+		if (choice !== 1) {
+			this.parent.send("DeviceStore::discoveryComplete");
+
+			return;
+		}
+
 		this.discovering = true;
 		this.devices     = {};
 		this.discoveryService.search(this.useCredentials, this.tasmotaUser, this.tasmotaPassword).then(devices => {
@@ -75,7 +93,7 @@ class DeviceStore {
 
 			this.fileService.save(this.devices);
 			this.discovering = false;
-			this.parent.send("DeviceStore::updated", Object.values(this.devices));
+			this.parent.send("DeviceStore::updated", this.devices);
 			this.parent.send("DeviceStore::discoveryComplete");
 		});
 	}

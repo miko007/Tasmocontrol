@@ -13,7 +13,7 @@ const General = () => {
 		const newDevice = {...device};
 		_.set(newDevice, event.target.name, event.target.value);
 		updateDevice(newDevice);
-	}, [device]);
+	}, [device, updateDevice]);
 
 	return (
 		<>

@@ -16,6 +16,8 @@ const DevicesListToolBox = ({config}) => {
 	}, [config])
 
 	const refresh = () => {
+		if (loading)
+			return;
 		window.api.refreshSearch();
 		setLoading(true);
 	}
