@@ -59,34 +59,36 @@ const App = () => {
 	}, [device, setDevices, devices, isSaving, setIsSaving]);
 
 	return (
-		<DeviceContext.Provider value={{
-			devices,
-			setDevices,
-			device,
-			sendChanges,
-			isSaving,
-			setIsSaving,
-			setDevice    : setDeviceObject,
-			updateDevice : setDevice
-		}}>
-			<Router>
-				<section className="mainWindow">
-					<Titlebar config={config} />
-					<main className="app">
-						<Sidebar width={sidebarWidth} resize={setSidebarWidth} />
-						<section className="content" style={{width : `${100 - sidebarWidth}vw`}}>
-							<Switch>
-								<Route path="/device/:ip" render={() => <DeviceDetails />} />
-								<Route exact path="/" render={() => <DevicesList config={config} />} />
-								<Route path="/settings" render={() => <Settings config={config} setConfig={handleInput} />} />
-								<Route path="/themes" render={() => <Theme />} />
-								<Route render={() => <Redirect to="/"/>}/>
-							</Switch>
-						</section>
-					</main>
-				</section>
-			</Router>
-		</DeviceContext.Provider>
+		<section className="light">
+			<DeviceContext.Provider value={{
+				devices,
+				setDevices,
+				device,
+				sendChanges,
+				isSaving,
+				setIsSaving,
+				setDevice    : setDeviceObject,
+				updateDevice : setDevice
+			}}>
+				<Router>
+					<section className="mainWindow">
+						<Titlebar config={config} />
+						<main className="app">
+							<Sidebar width={sidebarWidth} resize={setSidebarWidth} />
+							<section className="content" style={{width : `${100 - sidebarWidth}vw`}}>
+								<Switch>
+									<Route path="/device/:ip" render={() => <DeviceDetails />} />
+									<Route exact path="/" render={() => <DevicesList config={config} />} />
+									<Route path="/settings" render={() => <Settings config={config} setConfig={handleInput} />} />
+									<Route path="/themes" render={() => <Theme />} />
+									<Route render={() => <Redirect to="/"/>}/>
+								</Switch>
+							</section>
+						</main>
+					</section>
+				</Router>
+			</DeviceContext.Provider>
+		</section>
 	)
 }
 

@@ -1,5 +1,7 @@
-@import "variables";
 @import "animations";
+@import "variables";
+
+@import "theme_dark";
 
 @import "lib/photon/sass/photon";
 
@@ -14,6 +16,7 @@
 @import "themesTab";
 
 @import "overrides";
+
 
 * {
 	-webkit-user-drag: none;

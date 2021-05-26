@@ -2,7 +2,7 @@
 
 const path = require("path");
 
-const {BrowserWindow, screen, ipcMain} = require("electron");
+const {BrowserWindow, screen, ipcMain, nativeImage} = require("electron");
 
 class MainWindow {
 	constructor(parent) {

@@ -30,7 +30,7 @@ const DevicesList = ({config}) => {
 						{dev.StatusFWR.Version.replace(/\(.*\)/, "")}
 						<section className="additional-controls">
 							<NavLink to={`/device/${dev.StatusNET.IPAddress}`}>
-								<button className="btn">
+								<button className="btn btn-default">
 									<i className="icon icon-info-circled"></i>
 								</button>
 							</NavLink>

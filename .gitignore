@@ -4,4 +4,6 @@ node_modules
 *.css
 src/public/build
 assets/*.icns
+assets/*.ico
+assets/appIcon512.png
 dist
