@@ -22,5 +22,6 @@ contextBridge.exposeInMainWorld(
 );
 
 contextBridge.exposeInMainWorld("devices", {
-        requestAll : () => ipcRenderer.send("DeviceStore::all")
+        requestAll  : () => ipcRenderer.send("DeviceStore::all"),
+        deployTheme : (devices, theme) => ipcRenderer.send("DeviceStore::themeUpdate", [devices, theme])
 });

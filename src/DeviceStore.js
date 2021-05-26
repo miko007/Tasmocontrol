@@ -34,6 +34,7 @@ class DeviceStore {
 		ipcMain.on("DeviceStore::search", () => this.discover());
 		ipcMain.on("DeviceStore::single", (_, ip) => this.sendSingleDevice(ip));
 		ipcMain.on("DeviceStore::all", () => this.parent.send("DeviceStore::updated", this.devices));
+		ipcMain.on("DeviceStore::themeUpdate", (_, [devices, theme]) => this.deployTheme(devices, theme));
 
 		this.renewInterval();
 
@@ -44,6 +45,26 @@ class DeviceStore {
 		parent.configService.addListener("useCredentials", newValue => this.useCredentials = newValue);
 		parent.configService.addListener("tasmotaPassword", newValue => this.tasmotaPassword = newValue);
 		parent.configService.addListener("tasmotaUser", newValue => this.tasmotaUser = newValue);
+	}
+
+	deployTheme(devices, theme) {
+		if (devices.length === 0)
+			return;
+		const auth        = this.useCredentials ? `${this.tasmotaUser}:${this.tasmotaPassword}@` : "";
+		const themeObject = {
+			WebColor : theme.colors
+		}
+
+		const promises = [];
+		for (const ip of devices)
+			promises.push(axios.get(`http://${auth}${ip}/cm?cmnd=WebColor%20${encodeURIComponent(JSON.stringify(themeObject))}`));
+
+		Promise.allSettled(promises).then(responses => {
+			new Notification({
+				title : "Theme Update",
+				body  : `Theme '${theme.name}' deployed to ${responses.filter(item => item.status === "fulfilled").length} devices.`
+			}).show();
+		});
 	}
 
 	sendSingleDevice(ip) {

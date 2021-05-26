@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useContext} from "react";
+import React, {useState, useMemo, useContext, useCallback} from "react";
 
 import DeviceContext from "../../context/DeviceContext";
 
@@ -48,8 +48,9 @@ const Themes = [
 ];
 
 const Theme = () => {
-	const {devices}                         = useContext(DeviceContext);
-	const [selectedTheme, setSelectedTheme] = useState(0);
+	const {devices}                             = useContext(DeviceContext);
+	const [selectedTheme, setSelectedTheme]     = useState(0);
+	const [selectedDevices, setSelectedDevices] = useState([]);
 
 	const select = event => {
 		setSelectedTheme(event.target.value);
@@ -61,6 +62,28 @@ const Theme = () => {
 
 		return Themes[selectedTheme].colors;
 	}, [selectedTheme]);
+
+	const selectDevice = useCallback(event => {
+		const newDevices = [...selectedDevices];
+		const ip         = event.target.name;
+		const index      = newDevices.indexOf(ip)
+
+		if (index < 0)
+			newDevices.push(ip);
+		else
+			newDevices.splice(index, 1);
+		setSelectedDevices(newDevices);
+	}, [selectedDevices]);
+
+	const update = useCallback(() => {
+		if (selectedDevices.length === 0)
+			return;
+
+		window.devices.deployTheme(selectedDevices, Themes[selectedTheme]);
+
+		setSelectedDevices([]);
+		setSelectedTheme(0);
+	}, [selectedTheme, selectedDevices]);
 
 	return (
 		<section className="wrapper themesTab">
@@ -76,14 +99,14 @@ const Theme = () => {
 						{Object.values(devices).map((device, index) => {
 							return (
 								<li className="list-group-item" key={index}>
-									<input type="checkbox" id={`dev_${index}`} />
+									<input type="checkbox" id={`dev_${index}`} name={device.StatusNET.IPAddress} checked={selectedDevices.indexOf(device.StatusNET.IPAddress) >= 0} onChange={selectDevice} />
 									<label htmlFor={`dev_${index}`}>{device.Status.FriendlyName}</label>
 								</li>
 							);
 						})}
 					</ul>
 					<p>
-						<button className="btn btn-warning btn-large pull-right">update all</button>
+						<button className="btn btn-warning btn-large pull-right" onClick={update}>update all</button>
 					</p>
 				</section>
 				<section className="preview" style={{color: colors[0], background: colors[1]}}>
