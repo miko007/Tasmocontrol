@@ -6,6 +6,18 @@ const prepareText = text => {
 	return text.replace(/\t/g, "&nbsp;&nbsp;&nbsp;&nbsp;").replace(/\n/g, "<br />");
 }
 
+
+const greatestCommonDenominator = sortedArray => {
+	const first = sortedArray[0];
+	const last  = sortedArray[sortedArray.length - 1];
+
+	let i = 0;
+	while (i < first.length && first.charAt(i) === last.charAt(i))
+		i++;
+
+	return first.substring(0, i);
+}
+
 /**
  * TASMOTA Terminal Component
  *
@@ -58,8 +70,12 @@ const Terminal = ({
 		newLines.push(prompt + " " + line);
 		newLines.push(matches.join("    "));
 		setLines(newLines);
-		if (line.length > 2)
-			setLine(matches[0]);
+
+		if (line.length > 2) {
+			const closestMatch = greatestCommonDenominator(matches);
+			if (closestMatch.length > 2)
+				setLine(closestMatch);
+		}
 	}, [commands, line, lines, prompt]);
 
 	const clear = () => {

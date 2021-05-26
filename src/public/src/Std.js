@@ -20,6 +20,7 @@ class Std {
 
 		!rest.length ? object[head] = value : Std.ObjSet(object[head], value, rest.join("."));
 	}
+
 }
 
 export default Std;
