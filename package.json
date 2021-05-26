@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "dev": "concurrently \"cd src/public && cross-env BROWSER=none npm start\" \"wait-on tcp:3000 && electron .\"",
-    "build": "npm i && npm run build:assets && npm run build:react",
+    "build": "npm i && npm run prefab && npm run build:assets && npm run build:react",
     "build:react": "cd src/public && npm i && npm run build",
     "build:assets": "icon-gen -i assets/appIcon.svg -o ./assets --icns && xattr -cr assets/appIcon.svg",
     "prefab": "node util/prefabCommands.js",

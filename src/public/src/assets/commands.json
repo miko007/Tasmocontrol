@@ -1052,10 +1052,6 @@
         "label": "D_CMND_BR_RUN"
     },
     {
-        "value": "Reset",
-        "label": "D_CMND_BR_RESET"
-    },
-    {
         "value": "AdcParam",
         "label": "D_CMND_ADCPARAM"
     }

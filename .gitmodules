@@ -1,3 +1,6 @@
 [submodule "src/public/src/assets/css/lib/photon"]
 	path = src/public/src/assets/css/lib/photon
 	url = git@github.com:connors/photon.git
+[submodule "tasmota"]
+	path = tasmota
+	url = git@github.com:arendst/Tasmota.git

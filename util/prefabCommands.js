@@ -13,7 +13,7 @@ class Command {
 	}
 }
 
-fs.readFile(path.join(__dirname, "..", "tasmota", "i18n.h"), {encoding : "utf8"}).then(contents => {
+fs.readFile(path.join(__dirname, "..", "tasmota", "tasmota", "i18n.h"), {encoding : "utf8"}).then(contents => {
 	const lines    = contents.split("\n");
 	const commands = [];
 
