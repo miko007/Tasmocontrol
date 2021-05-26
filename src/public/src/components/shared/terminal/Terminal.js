@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useRef, useEffect} from "react";
+import React, {useState, useCallback, useRef, useEffect, useMemo} from "react";
 
 import "./terminal.scss";
 
@@ -53,7 +53,7 @@ const Terminal = ({
 	}, []);
 
 	const autoComplete = useCallback(() => {
-		const commandsAvailable = Object.keys(commands);
+		const commandsAvailable = Object.keys(cmnds());
 		let   matches           = [];
 
 		for (const cmd of commandsAvailable) {
@@ -78,11 +78,24 @@ const Terminal = ({
 		}
 	}, [commands, line, lines, prompt]);
 
+	const cmnds = () => {
+		return Object.assign({
+			clear : () => clear(),
+			help  : () => help(),
+			motd  : () => clear() && motd
+		}, commands);
+	};
+
 	const clear = () => {
 		setLines([]);
 
-		return "";
+		return " ";
 	}
+
+	const help = () => {
+		return Object.keys(cmnds()).filter(cmd => cmd !== "").join("\n");
+	};
+
 
 	const historyMove = useCallback(keyCode => {
 		if (history.length === 0)
@@ -115,10 +128,6 @@ const Terminal = ({
 			return;
 		}
 
-		const cmnds = Object.assign({
-			clear : () => clear()
-		}, commands);
-
 		setHistory(history => {
 			if (line === history[history.length - 1])
 				return  history;
@@ -131,7 +140,7 @@ const Terminal = ({
 		});
 
 		const cmd     = line.split(" ")[0]
-		const promise = cmnds.hasOwnProperty(cmd) ? cmnds[cmd](line) : `tasmota: ${cmd}: Command not found.`
+		const promise = cmnds().hasOwnProperty(cmd) ? cmnds()[cmd](line) : `tasmota: ${cmd}: Command not found.`
 
 		Promise.resolve(promise).then(result => {
 			setLines(lines => {
@@ -141,6 +150,7 @@ const Terminal = ({
 
 				return oldLines;
 			});
+			setLine("");
 		});
 
 	}, [line, prompt, commands])

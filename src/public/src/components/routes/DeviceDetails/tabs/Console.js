@@ -28,9 +28,6 @@ const Console = () => {
 	return (
 		<section style={{display: "flex"}}>
 			<Terminal
-				hideTopBar={true}
-				showAction={false}
-				allowTabs={false}
 				color="#eee"
 				commands={commands}
 				motd={`Tasmocontrol v${TasmocontrolInfo.version}\nCommand console\n\nDevice: ${ip}\n\n`}
