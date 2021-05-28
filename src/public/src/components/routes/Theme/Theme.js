@@ -1,6 +1,6 @@
 import React, {useState, useMemo, useContext, useCallback} from "react";
 
-import DeviceContext from "../../context/DeviceContext";
+import DeviceSelectionList from "../../shared/DeviceSelectionList";
 
 /**
  * Theme Color assignments as of Tasmota code documentation:
@@ -48,7 +48,6 @@ const Themes = [
 ];
 
 const Theme = () => {
-	const {devices}                             = useContext(DeviceContext);
 	const [selectedTheme, setSelectedTheme]     = useState(0);
 	const [selectedDevices, setSelectedDevices] = useState([]);
 
@@ -63,17 +62,6 @@ const Theme = () => {
 		return Themes[selectedTheme].colors;
 	}, [selectedTheme]);
 
-	const selectDevice = useCallback(event => {
-		const newDevices = [...selectedDevices];
-		const ip         = event.target.name;
-		const index      = newDevices.indexOf(ip)
-
-		if (index < 0)
-			newDevices.push(ip);
-		else
-			newDevices.splice(index, 1);
-		setSelectedDevices(newDevices);
-	}, [selectedDevices]);
 
 	const update = useCallback(() => {
 		if (selectedDevices.length === 0)
@@ -95,16 +83,7 @@ const Theme = () => {
 							{Themes.map((theme, index) => <option value={index} key={index}>{theme.name}</option>)}
 						</select>
 					</p>
-					<ul className="list-group small">
-						{Object.values(devices).map((device, index) => {
-							return (
-								<li className="list-group-item" key={index}>
-									<input type="checkbox" id={`dev_${index}`} name={device.StatusNET.IPAddress} checked={selectedDevices.indexOf(device.StatusNET.IPAddress) >= 0} onChange={selectDevice} />
-									<label htmlFor={`dev_${index}`}>{device.Status.FriendlyName}</label>
-								</li>
-							);
-						})}
-					</ul>
+					<DeviceSelectionList selectedDevices={selectedDevices} setSelectedDevices={setSelectedDevices} />
 					<p>
 						<button className="btn btn-warning btn-large pull-right" onClick={update}>update all</button>
 					</p>

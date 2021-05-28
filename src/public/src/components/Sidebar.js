@@ -40,6 +40,10 @@ const Sidebar = ({width, resize}) => {
 					<span className="icon icon-brush"></span>
 					Themes
 				</NavLink>
+				<NavLink exact to="/firmware" className="nav-group-item" activeClassName="active">
+					<span className="icon icon-arrows-ccw"></span>
+					OTA Update
+				</NavLink>
 				<NavLink exact to="/settings" className="nav-group-item" activeClassName="active">
 					<span className="icon icon-cog"></span>
 					Settings
