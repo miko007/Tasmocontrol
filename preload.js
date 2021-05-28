@@ -2,6 +2,7 @@ const {contextBridge, ipcRenderer} = require("electron");
 
 contextBridge.exposeInMainWorld(
     "api", {
+        darkModeChanged : callback => ipcRenderer.on("Tasmocontrol::darkMode", (_, useDarkMode) => callback(useDarkMode)),
         refreshSearch : () => {
             ipcRenderer.send("DeviceStore::search");
         },

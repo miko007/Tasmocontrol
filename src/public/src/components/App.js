@@ -21,6 +21,7 @@ const App = () => {
 	const [device, setDevice]             = useState(null);
 	const [sidebarWidth, setSidebarWidth] = useState(30);
 	const [isSaving, setIsSaving]         = useState(false);
+	const [darkMode, setDarkMode]         = useState(false);
 
 	useEffect(() => {
 		window.api.searchUpdated(devices => {
@@ -29,6 +30,7 @@ const App = () => {
 		window.api.configUpdated(newConfig =>  {
 			setConfig(newConfig)
 		});
+		window.api.darkModeChanged(useDarkMode => setDarkMode(useDarkMode));
 		window.devices.requestAll();
 		window.api.configRequest();
 	}, []);
@@ -59,7 +61,7 @@ const App = () => {
 	}, [device, setDevices, devices, isSaving, setIsSaving]);
 
 	return (
-		<section className="light">
+		<section className={darkMode ? "dark" : "light"}>
 			<DeviceContext.Provider value={{
 				devices,
 				setDevices,
