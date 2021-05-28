@@ -1,6 +1,6 @@
 {
   "name": "tasmocontrol",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "an electron based management application for tasmota devices",
   "main": "main.js",
   "scripts": {
