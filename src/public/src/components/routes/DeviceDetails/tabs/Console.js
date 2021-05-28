@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 
+import _ from "lodash";
+
 import Terminal from "../../../shared/terminal/Terminal";
 import TasmocontrolInfo from "../../../../../package.json";
 
@@ -14,14 +16,16 @@ const Console = () => {
 
 	useEffect(() => {
 		setCommands(oldCommands => {
+			const newCommands = _.clone(oldCommands);
+
 			for (const command of Commands)
-				oldCommands[command.value] = async line => {
+				newCommands[command.value] = async line => {
 					const result = await window.api.commandImmediate(ip, line);
 
 					return JSON.stringify(result);
 				};
 
-			return oldCommands;
+			return newCommands;
 		});
 	}, [ip]);
 

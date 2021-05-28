@@ -39,6 +39,7 @@ const Terminal = ({
 		}) => {
 	const input                 = useRef();
 	const end                   = useRef();
+	const cmnds                 = useRef({});
 	const [lines, setLines]     = useState(["---", prepareText(motd)]);
 	const [history, setHistory] = useState([]);
 	const [line, setLine]       = useState("");
@@ -52,8 +53,27 @@ const Terminal = ({
 		focus();
 	}, []);
 
+	const clear = useCallback(() => {
+		setLines([]);
+
+		return " ";
+	}, []);
+
+	const help = useCallback(() => {
+		return Object.keys(cmnds.current).filter(cmd => cmd !== "").join("\n");
+	}, [cmnds]);
+
+	useEffect(() => {
+		cmnds.current = Object.assign({
+			clear : () => clear(),
+			help  : () => help(),
+			motd  : () => clear() && motd
+		}, commands);
+
+	}, [commands, help, motd, clear]);
+
 	const autoComplete = useCallback(() => {
-		const commandsAvailable = Object.keys(cmnds());
+		const commandsAvailable = Object.keys(cmnds.current);
 		let   matches           = [];
 
 		for (const cmd of commandsAvailable) {
@@ -76,26 +96,7 @@ const Terminal = ({
 			if (closestMatch.length > 2)
 				setLine(closestMatch);
 		}
-	}, [commands, line, lines, prompt]);
-
-	const cmnds = () => {
-		return Object.assign({
-			clear : () => clear(),
-			help  : () => help(),
-			motd  : () => clear() && motd
-		}, commands);
-	};
-
-	const clear = () => {
-		setLines([]);
-
-		return " ";
-	}
-
-	const help = () => {
-		return Object.keys(cmnds()).filter(cmd => cmd !== "").join("\n");
-	};
-
+	}, [line, lines, prompt, cmnds]);
 
 	const historyMove = useCallback(keyCode => {
 		if (history.length === 0)
@@ -140,7 +141,7 @@ const Terminal = ({
 		});
 
 		const cmd     = line.split(" ")[0]
-		const promise = cmnds().hasOwnProperty(cmd) ? cmnds()[cmd](line) : `tasmota: ${cmd}: Command not found.`
+		const promise = cmnds.current.hasOwnProperty(cmd) ? cmnds.current[cmd](line) : `tasmota: ${cmd}: Command not found.`
 
 		Promise.resolve(promise).then(result => {
 			setLines(lines => {
@@ -204,7 +205,7 @@ const Terminal = ({
 				scroll();
 				return;
 		}
-	}, [enter, historyMove, autoComplete, cancel]);
+	}, [enter, historyMove, autoComplete, cancel, clear]);
 
 	return (
 		<section className="terminal" onClick={focus} style={{

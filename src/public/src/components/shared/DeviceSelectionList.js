@@ -15,7 +15,7 @@ const DeviceSelectionList = ({selectedDevices, setSelectedDevices, showVersion =
 		else
 			newDevices.splice(index, 1);
 		setSelectedDevices(newDevices);
-	}, [selectedDevices]);
+	}, [selectedDevices, setSelectedDevices]);
 
 	return (
 		<ul className="list-group small">
