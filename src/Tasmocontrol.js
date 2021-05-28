@@ -1,7 +1,7 @@
 "use strict";
 
-const {app, BrowserWindow} = require("electron");
-const path                 = require("path");
+const {app, BrowserWindow, nativeTheme, ipcMain} = require("electron");
+const path                                       = require("path");
 
 const MainWindow    = require("./MainWindow");
 const DeviceStore   = require("./DeviceStore");
@@ -32,6 +32,7 @@ class Tasmocontrol {
 	createWindow() {
 		this.mainWindow = new MainWindow(this).instance;
 		this.mainWindow.on("ready-to-show", event => {
+			this.send("Tasmocontrol::darkMode", nativeTheme.shouldUseDarkColors);
 			this.mainWindow.show();
 		});
 
@@ -42,6 +43,9 @@ class Tasmocontrol {
 
 		this.mainWindow.on("resized", () => this.updateWindowConfig());
 		this.mainWindow.on("moved", () => this.updateWindowConfig());
+		nativeTheme.on("updated", () => {
+			this.send("Tasmocontrol::darkMode", nativeTheme.shouldUseDarkColors);
+		});
 	}
 
 	updateWindowConfig() {
