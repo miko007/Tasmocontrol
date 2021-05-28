@@ -24,7 +24,7 @@ class Std {
 				render = Chalk.green;
 				break;
 			case Std.LogLevel.WARN:
-				render = Chalk.orange;
+				render = Chalk.yellow;
 				break;
 			case Std.LogLevel.NORMAL:
 			default:
