@@ -11,7 +11,7 @@ class DeviceStore {
 	constructor(parent) {
 		this.parent            = parent;
 		this.devices           = {};
-		this.discoveryService  = new DiscoveryService();
+		this.discoveryService  = new DiscoveryService(parent);
 		this.fileService       = new FileService("devices.json");
 		this.discovering       = false;
 		this.interval          = parent.configService.get("interval", 2);

@@ -12,8 +12,8 @@ class TasmotaDevice {
 		if (!other.hasOwnProperty("Status"))
 			return true;
 
-		const $this  = _.clone(this);
-		const $other = _.clone(other);
+		const $this  = _.cloneDeep(this);
+		const $other = _.cloneDeep(other);
 
 		/*
 		 * Removing constantly changing values
@@ -30,7 +30,7 @@ class TasmotaDevice {
 		delete $other.StatusTIM;
 		delete $other.StatusPRM.Uptime;
 
-		return JSON.stringify($this) !== JSON.stringify($other);
+		return !_.isEqual($this, $other);
 	}
 }
 

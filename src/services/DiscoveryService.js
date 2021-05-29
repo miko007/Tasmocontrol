@@ -1,13 +1,16 @@
 "use strict";
 
-const axios = require("axios").default;
-const IPv4  = require("../structs/IPv4");
-const Std   = require("../Std");
+const axios          = require("axios").default;
+const IPv4           = require("../structs/IPv4");
+const NetworkService = require("./NetworkService");
+const Std            = require("../Std");
 
 class DiscoveryService {
-	constructor() {
+	constructor(parent) {
+		this.parent           = parent;
 		this.addressesChecked = 0;
 		this.addressesToCheck = 0;
+		this.networkService   = new NetworkService(parent);
 	}
 
 	search(useCredentials, user, password) {

@@ -2,7 +2,7 @@
 
 ## v0.0.3 *(alpha)*
 ### Fixed
-* Circular dependecy in command list for console
+* Circular dependency in command list for console
 
 ### Changed
 * New icon

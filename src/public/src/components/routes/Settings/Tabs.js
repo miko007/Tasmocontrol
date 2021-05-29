@@ -10,9 +10,9 @@ const Tabs = () => {
 			<NavLink exact to="/settings/tasmota" className="tab-item" activeClassName="active">
 				Tasmota
 			</NavLink>
-			<div className="tab-item">
+			<NavLink exact to="/settings/network" className="tab-item" activeClassName="active">
 				Network
-			</div>
+			</NavLink>
 		</div>
 	);
 };

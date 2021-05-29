@@ -26,3 +26,8 @@ contextBridge.exposeInMainWorld("devices", {
         requestAll  : () => ipcRenderer.send("DeviceStore::all"),
         deployTheme : (devices, theme) => ipcRenderer.send("DeviceStore::themeUpdate", [devices, theme])
 });
+
+contextBridge.exposeInMainWorld("network", {
+        interfaces      : () => ipcRenderer.send("NetworkService::interfaces"),
+        interfaceUpdate : callback => ipcRenderer.on("NetworkService::interfacesReply", (_, ifaces) => callback(ifaces))
+});
