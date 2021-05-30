@@ -1,9 +1,9 @@
-const {contextBridge, ipcRenderer} = require("electron");
+const {contextBridge, ipcRenderer, app} = require("electron");
 
 contextBridge.exposeInMainWorld(
     "api", {
         darkModeChanged : callback => ipcRenderer.on("Tasmocontrol::darkMode", (_, useDarkMode) => callback(useDarkMode)),
-        refreshSearch : () => {
+        refreshSearch   : () => {
             ipcRenderer.send("DeviceStore::search");
         },
         searchUpdated : callback => ipcRenderer.on("DeviceStore::updated", (_, devices) => callback(devices)),
@@ -13,18 +13,19 @@ contextBridge.exposeInMainWorld(
             ipcRenderer.send("ConfigService::set", [key, value]);
         },
         discoveryComplete : callback => ipcRenderer.on("DeviceStore::discoveryComplete", () => callback()),
-        deviceRequestAll : () => ipcRenderer.send("DeviceStore::all"),
-        deviceRequest : ip => ipcRenderer.send("DeviceStore::single", ip),
-        deviceReceive : callback => ipcRenderer.on("DeviceStore::device", (_, device) => callback(device)),
-        commandSend : (ip, command, payload) => ipcRenderer.send("CommandService::send", [ip, command, payload]),
-        commandImmediate : async (ip, command) => ipcRenderer.invoke("CommandService::sendImmediate", [ip, command]),
-        windowMinMax : () => ipcRenderer.send("MainWindow::minMax")
+        deviceRequestAll  : () => ipcRenderer.send("DeviceStore::all"),
+        deviceRequest     : ip => ipcRenderer.send("DeviceStore::single", ip),
+        deviceReceive     : callback => ipcRenderer.on("DeviceStore::device", (_, device) => callback(device)),
+        commandSend       : (ip, command, payload) => ipcRenderer.send("CommandService::send", [ip, command, payload]),
+        commandImmediate  : async (ip, command) => ipcRenderer.invoke("CommandService::sendImmediate", [ip, command]),
+        windowMinMax      : () => ipcRenderer.send("MainWindow::minMax")
     }
 );
 
 contextBridge.exposeInMainWorld("devices", {
         requestAll  : () => ipcRenderer.send("DeviceStore::all"),
-        deployTheme : (devices, theme) => ipcRenderer.send("DeviceStore::themeUpdate", [devices, theme])
+        deployTheme : (devices, theme) => ipcRenderer.send("DeviceStore::themeUpdate", [devices, theme]),
+        visit       : ip => ipcRenderer.send("DeviceStore::visit", ip)
 });
 
 contextBridge.exposeInMainWorld("network", {

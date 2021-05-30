@@ -4,9 +4,9 @@ import {useParams} from "react-router-dom";
 import _ from "lodash";
 
 import Terminal from "../../../shared/terminal/Terminal";
-import TasmocontrolInfo from "../../../../../package.json";
 
 import Commands from "../../../../assets/commands.json";
+import {version} from "../../../../electron.json";
 
 const Console = () => {
 	const {ip} = useParams();
@@ -34,7 +34,7 @@ const Console = () => {
 			<Terminal
 				color="#eee"
 				commands={commands}
-				motd={`Tasmocontrol v${TasmocontrolInfo.version}\nCommand console\n\nDevice: ${ip}\n\n`}
+				motd={`Tasmocontrol v${version}\nCommand console\n\nDevice: ${ip}\n\n`}
 				promptColor="#f82a71"
 				backgroundColor="#222"
 				outputColor="#aaa"

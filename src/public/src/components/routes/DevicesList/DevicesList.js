@@ -29,6 +29,9 @@ const DevicesList = ({config}) => {
 						{dev.StatusFWR.Version.replace(/\(.*\)/, "")}
 						<span className="icon icon-signal" style={{marginLeft : "1rem"}} title="Wifi signal"> {dev.StatusSTS.Wifi.RSSI}%</span>
 						<section className="additional-controls">
+							<button className="btn btn-default" onClick={() => window.devices.visit(dev.StatusNET.IPAddress)}>
+								<i className="icon icon-export"></i>
+							</button>
 							<NavLink to={`/device/${dev.StatusNET.IPAddress}`}>
 								<button className="btn btn-default">
 									<i className="icon icon-info-circled"></i>

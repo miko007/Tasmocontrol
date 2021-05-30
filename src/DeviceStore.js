@@ -1,11 +1,11 @@
 "use strict";
 
-const {ipcMain, Notification, dialog} = require("electron");
-const DiscoveryService                = require("./services/DiscoveryService");
-const axios                           = require("axios");
-const Std                             = require("./Std");
-const FileService                     = require("./services/FileService");
-const TasmotaDevice                   = require("./structs/TasmotaDevice");
+const {ipcMain, Notification, dialog, shell} = require("electron");
+const DiscoveryService                       = require("./services/DiscoveryService");
+const axios                                  = require("axios");
+const Std                                    = require("./Std");
+const FileService                            = require("./services/FileService");
+const TasmotaDevice                          = require("./structs/TasmotaDevice");
 
 class DeviceStore {
 	constructor(parent) {
@@ -35,6 +35,7 @@ class DeviceStore {
 		ipcMain.on("DeviceStore::single", (_, ip) => this.sendSingleDevice(ip));
 		ipcMain.on("DeviceStore::all", () => this.parent.send("DeviceStore::updated", this.devices));
 		ipcMain.on("DeviceStore::themeUpdate", (_, [devices, theme]) => this.deployTheme(devices, theme));
+		ipcMain.on("DeviceStore::visit", (_, ip) => shell.openExternal(`http://${ip}`));
 
 		this.renewInterval();
 
