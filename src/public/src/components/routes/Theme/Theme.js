@@ -44,6 +44,14 @@ const Themes = [
 	{
 		name   : "Purple Rain",
 		colors : ["#eaeaea","#252525","#282531","#eaeaea","#282531","#d7ccff","#1d1b26","#ff5661","#008000","#faffff","#694fa8","#4d3e7f","#b73d5d","#822c43","#1f917c","#156353","#faffff","#716b7f","#eaeaea"]
+	},
+	{
+		name   : "Monokai",
+		colors : ["#e6db73","#272822","#333333","#aaaaaa",
+			"#222222","#a6e12d","#222222",
+			"#ffa727", "#a6e12d","#ffffff","#66d8ee",
+			"#5CC2D6","#f82a71","#E32769", "#ae80fe",
+			"#A075EB","#faffff","#716b7f"]
 	}
 ];
 
