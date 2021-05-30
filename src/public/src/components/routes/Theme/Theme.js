@@ -47,11 +47,7 @@ const Themes = [
 	},
 	{
 		name   : "Monokai",
-		colors : ["#e6db73","#272822","#333333","#aaaaaa",
-			"#222222","#a6e12d","#222222",
-			"#ffa727", "#a6e12d","#ffffff","#66d8ee",
-			"#5CC2D6","#f82a71","#E32769", "#ae80fe",
-			"#A075EB","#faffff","#716b7f"]
+		colors : ["#e6db73","#272822","#333333","#aaaaaa","#222222","#a6e12d","#222222","#ffa727", "#a6e12d","#ffffff","#66d8ee","#5CC2D6","#f82a71","#E32769", "#ae80fe","#A075EB","#faffff","#716b7f"]
 	}
 ];
 

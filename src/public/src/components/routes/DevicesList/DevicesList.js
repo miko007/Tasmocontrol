@@ -14,7 +14,6 @@ const DevicesList = ({config}) => {
 	if (typeof config.useCredentials === "undefined" || (config.useCredentials && (!config.tasmotaUser || !config.tasmotaPassword)))
 		return <NoCredentials />
 
-
 	if (devices.length === 0)
 		return <NothingHere text="No Devices detected yet" />
 
@@ -28,6 +27,7 @@ const DevicesList = ({config}) => {
 						<small>{dev.StatusNET.IPAddress}</small><br />
 						<span className="icon icon-record" style={{color : !dev.alive ? "#fc605b" : "#34c84a", marginRight : "0.5rem"}}></span>
 						{dev.StatusFWR.Version.replace(/\(.*\)/, "")}
+						<span className="icon icon-signal" style={{marginLeft : "1rem"}} title="Wifi signal"> {dev.StatusSTS.Wifi.RSSI}%</span>
 						<section className="additional-controls">
 							<NavLink to={`/device/${dev.StatusNET.IPAddress}`}>
 								<button className="btn btn-default">
