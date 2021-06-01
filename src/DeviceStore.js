@@ -12,14 +12,11 @@ class DeviceStore {
 		this.parent            = parent;
 		this.devices           = {};
 		this.discoveryService  = new DiscoveryService(parent);
+		this.authService       = parent.authService;
 		this.fileService       = new FileService("devices.json");
 		this.discovering       = false;
 		this.interval          = parent.configService.get("interval", 2);
 		this.refreshInterval   = null;
-
-		this.useCredentials    = parent.configService.get("useCredentials", false);
-		this.tasmotaUser       = parent.configService.get("tasmotaUser", "admin");
-		this.tasmotaPassword   = parent.configService.get("tasmotaPassword", "");
 
 		this.fileService.load().then(content  => {
 			this.devices = JSON.parse(content)
@@ -43,22 +40,18 @@ class DeviceStore {
 			this.interval = parseInt(newValue);
 			this.renewInterval();
 		});
-		parent.configService.addListener("useCredentials", newValue => this.useCredentials = newValue);
-		parent.configService.addListener("tasmotaPassword", newValue => this.tasmotaPassword = newValue);
-		parent.configService.addListener("tasmotaUser", newValue => this.tasmotaUser = newValue);
 	}
 
 	deployTheme(devices, theme) {
 		if (devices.length === 0)
 			return;
-		const auth        = this.useCredentials ? `${this.tasmotaUser}:${this.tasmotaPassword}@` : "";
 		const themeObject = {
 			WebColor : theme.colors
 		}
 
 		const promises = [];
 		for (const ip of devices)
-			promises.push(axios.get(`http://${auth}${ip}/cm?cmnd=WebColor%20${encodeURIComponent(JSON.stringify(themeObject))}`));
+			promises.push(axios.get(`http://${ip}/cm?cmnd=WebColor%20${encodeURIComponent(JSON.stringify(themeObject))}${this.authService}`));
 
 		Promise.allSettled(promises).then(responses => {
 			new Notification({
@@ -103,7 +96,7 @@ class DeviceStore {
 
 		this.discovering = true;
 		this.devices     = {};
-		this.discoveryService.search(this.useCredentials, this.tasmotaUser, this.tasmotaPassword).then(devices => {
+		this.discoveryService.search().then(devices => {
 			for (const device of devices) {
 				this.devices[device.StatusNET.IPAddress] = new TasmotaDevice(device, true);
 			}
@@ -127,13 +120,12 @@ class DeviceStore {
 		const oldDevices = {...this.devices};
 		let   different  = 0;
 
-		const auth = this.useCredentials ? `${this.tasmotaUser}:${this.tasmotaPassword}@` : "";
 		const promises = [];
 
 		for (const device of Object.values(this.devices))
 			promises.push(axios({
 				method  : "get",
-				url     : `http://${auth}${device.StatusNET.IPAddress}/cm?cmnd=status%200`,
+				url     : `http://${device.StatusNET.IPAddress}/cm?cmnd=status%200${this.authService}`,
 				timeout : 500
 			}));
 

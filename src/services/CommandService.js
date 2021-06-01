@@ -6,6 +6,7 @@ const axios     = require("axios");
 class CommandService {
 	constructor(parent) {
 		this.parent          = parent;
+		this.authService     = parent.authService;
 		this.useCredentials  = parent.configService.get("useCredentials", false);
 		this.tasmotaUser     = parent.configService.get("tasmotaUser", "admin");
 		this.tasmotaPassword = parent.configService.get("tasmotaPassword", "");
@@ -16,10 +17,8 @@ class CommandService {
 
 		ipcMain.on("CommandService::send", (_, [ip, command, payload]) => this.send(ip, command, payload));
 		ipcMain.handle("CommandService::sendImmediate", async (event, [ip, command]) => {
-			console.log(this.auth);
-			const auth = this.useCredentials ? `${this.tasmotaUser}:${this.tasmotaPassword}@` : "";
 			try {
-				const response = await axios.get(`http://${auth}${ip}/cm?cmnd=${encodeURIComponent(command)}`);
+				const response = await axios.get(`http://${ip}/cm?cmnd=${encodeURIComponent(command)}${this.authService}`);
 
 				return response.data;
 			} catch (error) {
@@ -30,8 +29,7 @@ class CommandService {
 	}
 
 	send(ip, command, payload) {
-		const auth = this.useCredentials ? `${this.tasmotaUser}:${this.tasmotaPassword}@` : "";
-		return axios.get(`http://${auth}${ip}/cm?cmnd=${command}%20${payload}`);
+		return axios.get(`http://${ip}/cm?cmnd=${command}%20${payload}${this.authService}`);
 	}
 }
 

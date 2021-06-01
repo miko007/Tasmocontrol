@@ -8,26 +8,25 @@ const Std            = require("../Std");
 class DiscoveryService {
 	constructor(parent) {
 		this.parent           = parent;
+		this.authService      = parent.authService;
 		this.addressesChecked = 0;
 		this.addressesToCheck = 0;
 		this.networkService   = new NetworkService(parent);
 	}
 
-	search(useCredentials, user, password) {
+	search() {
 		return new Promise((resolve, reject) => {
 			const [firstIP, lastIP] = IPv4.LocalRange();
-			const auth              = useCredentials ? `${user}:${password}@` : "";
 
 			this.addressesToCheck = lastIP.address.decimal() - firstIP.address.decimal() + 1;
 			Std.Log(`[DiscoveryService] ${this.addressesToCheck} addresses to check`, Std.LogLevel.INFO);
 
 			const promises = [];
-
 			for (let start = firstIP.address.decimal(); start <= lastIP.address.decimal(); start++) {
 				const ip   = new IPv4(start);
 				promises.push(axios({
 					method  : "get",
-					url     : `http://${auth}${ip.address}/cm?cmnd=status%200`,
+					url     : `http://${ip.address}/cm?cmnd=status%200${this.authService}`,
 					timeout : 3000
 				}));
 			}

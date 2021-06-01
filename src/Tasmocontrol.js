@@ -7,6 +7,7 @@ const MainWindow    = require("./MainWindow");
 const DeviceStore   = require("./DeviceStore");
 const ConfigService = require("./services/ConfigService");
 const CommandSerice = require("./services/CommandService");
+const AuthService   = require("./services/AuthService");
 const Std           = require("./Std");
 
 class Tasmocontrol {
@@ -15,6 +16,7 @@ class Tasmocontrol {
 		this.deviceStore    = null;
 		this.configService  = null;
 		this.commandService = null;
+		this.authService    = null;
 
 		app.whenReady().then(() => this.init());
 
@@ -55,6 +57,7 @@ class Tasmocontrol {
 
 	init() {
 		this.configService  = new ConfigService(this);
+		this.authService    = new AuthService(this);
 		this.deviceStore    = new DeviceStore(this);
 		this.commandService = new CommandSerice(this);
 		this.createWindow();
